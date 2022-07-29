@@ -6,6 +6,7 @@ import 'package:pokedex/api/models/pokemon_base_stats_model.dart';
 import 'package:pokedex/api/models/pokemon_moves_model.dart';
 
 part 'app_state.freezed.dart';
+
 part 'app_state.g.dart';
 
 @freezed

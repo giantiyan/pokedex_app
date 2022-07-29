@@ -20,10 +20,10 @@ class PokemonHandler {
 
       final pokemonResults = results
           .mapIndexed((index, pokemon) => PokemonModel(
-        name: pokemon['name'],
-        url: pokemon['url'],
-        id: index + 1,
-      ))
+                name: pokemon['name'],
+                url: pokemon['url'],
+                id: index + 1,
+              ))
           .toList();
       return pokemonResults;
     } else {
@@ -44,8 +44,8 @@ class PokemonHandler {
       final List results = jsonDecode(response.body)['types'];
       final typeResults = results
           .mapIndexed((index, type) => PokemonTypeModel(
-        name: type['type']['name'],
-      ))
+                name: type['type']['name'],
+              ))
           .toList();
 
       return typeResults;
@@ -53,7 +53,5 @@ class PokemonHandler {
       print('Can\'t get Pokemon types. Error ${response.statusCode}');
       return [];
     }
-
   }
-
 }
