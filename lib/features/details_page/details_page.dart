@@ -25,45 +25,42 @@ class DetailsPage extends StatelessWidget {
               child: Column(
                 children: [
                   Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            (specificPokemon?.name).toString().capitalize,
+                    padding: const EdgeInsets.all(12.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          (specificPokemon?.name).toString().capitalize,
+                          style: const TextStyle(
+                            fontSize: 32,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: Text(
+                            (specificPokemon?.id).toString().formatID,
                             style: const TextStyle(
-                              fontSize: 32,
+                              fontSize: 16,
                               fontWeight: FontWeight.bold,
                               color: Colors.white,
                             ),
                           ),
-                          Align(
-                            alignment: Alignment.centerRight,
-                            child: Text(
-                              (specificPokemon?.id).toString().formatID,
-                              style: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                              ),
-                            ),
+                        ),
+                        Row(
+                          children: [...?types?.map((type) => Type(type.name))],
+                        ),
+                        Center(
+                          child: Image.network(
+                            specificPokemon?.id.toString().pokemonImage ?? '',
+                            height: 210,
                           ),
-                          Row(
-                            children: [
-                              ...?types?.map((type) => Type(type.name))
-                            ],
-                          ),
-                          Center(
-                            child: Container(
-                              height: 210,
-                              margin: EdgeInsets.only(bottom: 20),
-                              child: Image.network(
-                                  specificPokemon?.id.toString().pokemonImage ??
-                                      ''),
-                            ),
-                          ),
-                        ],
-                      )),
+                        ),
+                        SizedBox(height: 20),
+                      ],
+                    ),
+                  ),
                   Expanded(
                     child: Container(
                       decoration: BoxDecoration(
