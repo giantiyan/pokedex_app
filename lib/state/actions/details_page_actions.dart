@@ -16,3 +16,16 @@ class GetPokemonTypesAction extends ReduxAction<AppState> {
     return state.copyWith(types: types);
   }
 }
+
+/// Get pokemon about details and save it to the state
+class GetPokemonAboutAction extends ReduxAction<AppState> {
+  GetPokemonAboutAction(this.pokemonURL);
+
+  final String? pokemonURL;
+
+  @override
+  Future<AppState> reduce() async {
+    final about = await PokemonHandler.getPokemonAbout(pokemonURL!);
+    return state.copyWith(about: about);
+  }
+}

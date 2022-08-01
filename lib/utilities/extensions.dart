@@ -6,6 +6,8 @@ extension StringExt on String {
   String get capitalize =>
       '${this[0].toUpperCase()}${substring(1).toLowerCase()}';
 
+  String get toTitleCase => this.toLowerCase().split(' ').map((word) => word[0].toUpperCase() + word.substring(1)).join(' ');
+
   String get pokemonImage {
     // return 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/$this.png';
     return 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/$this.png';
@@ -119,4 +121,20 @@ extension StringExt on String {
     var formatter = new NumberFormat('000');
     return '#${formatter.format(int.parse(this))}';
   }
+
+  String get replaceBracket => replaceAll('[', '').replaceAll(']', '');
+
+  String get replaceDash => replaceAll('-', ' ');
+
+  String get toHeight {
+    var convert = double.parse(this) / 10;
+    return convert.toString() + ' m';
+  }
+
+  String get toWeight {
+    var convert = double.parse(this) / 10;
+    return convert.toString() + ' kg';
+  }
+
+  String get toBaseExp => '$this xp';
 }
