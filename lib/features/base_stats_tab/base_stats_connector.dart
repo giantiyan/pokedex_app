@@ -6,16 +6,23 @@ import 'package:pokedex/state/actions/details_page_actions.dart';
 import 'package:pokedex/state/app_state.dart';
 
 class BaseStatsTabConnector extends StatelessWidget {
-  const BaseStatsTabConnector(this.pokemonURL);
+  const BaseStatsTabConnector({
+    this.pokemonURL,
+    this.pokemonType,
+  });
 
   final String? pokemonURL;
+  final String? pokemonType;
 
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, BaseStatsTabVm>(
       vm: () => BaseStatsTabVmFactory(),
       onInit: (vm) => vm.dispatch(GetPokemonBaseStatsAction(pokemonURL)),
-      builder: (context, vm) => BaseStatsTab(vm.baseStats),
+      builder: (context, vm) => BaseStatsTab(
+        baseStats: vm.baseStats,
+        pokemonType: pokemonType,
+      ),
     );
   }
 }

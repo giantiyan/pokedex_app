@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pokedex/utilities/colors.dart';
 import 'package:pokedex/utilities/extensions.dart';
 
 class Type extends StatelessWidget {
@@ -25,7 +26,7 @@ class Type extends StatelessWidget {
           ),
           child: Text(
             typeName?.capitalize ?? '',
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(color: white),
           ),
         ),
       ],

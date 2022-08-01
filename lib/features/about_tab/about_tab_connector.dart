@@ -12,7 +12,7 @@ class AboutTabConnector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StoreConnector<AppState, AboutTabVm> (
+    return StoreConnector<AppState, AboutTabVm>(
       vm: () => AboutTabVmFactory(),
       onInit: (vm) => vm.dispatch(GetPokemonAboutAction(pokemonURL)),
       builder: (context, vm) => AboutTab(vm.about),

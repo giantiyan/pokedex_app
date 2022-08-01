@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pokedex/utilities/colors.dart';
 
 class AboutInformation extends StatelessWidget {
   const AboutInformation({
@@ -22,7 +23,7 @@ class AboutInformation extends StatelessWidget {
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
-                color: Colors.grey[800],
+                color: labelGrey,
               ),
             ),
           ),

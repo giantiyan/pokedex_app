@@ -22,10 +22,10 @@ class PokemonHandler {
 
       final pokemonResults = results
           .mapIndexed((index, pokemon) => PokemonModel(
-        name: pokemon['name'],
-        url: pokemon['url'],
-        id: index + 1,
-      ))
+                name: pokemon['name'],
+                url: pokemon['url'],
+                id: index + 1,
+              ))
           .toList();
       return pokemonResults;
     } else {

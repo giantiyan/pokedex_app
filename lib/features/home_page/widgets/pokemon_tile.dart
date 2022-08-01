@@ -4,6 +4,7 @@ import 'package:pokedex/api/models/pokemon_model.dart';
 import 'package:pokedex/api/models/pokemon_type_model.dart';
 import 'package:pokedex/features/details_page/details_page_connector.dart';
 import 'package:pokedex/features/home_page/widgets/type.dart';
+import 'package:pokedex/utilities/colors.dart';
 import 'package:pokedex/utilities/constants.dart';
 import 'package:pokedex/utilities/extensions.dart';
 
@@ -71,7 +72,7 @@ class _PokemonTileState extends State<PokemonTile> {
                         style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                          color: white,
                         ),
                       ),
                       const SizedBox(height: 8.0),

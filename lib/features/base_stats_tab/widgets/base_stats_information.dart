@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:pokedex/utilities/colors.dart';
 import 'package:pokedex/utilities/extensions.dart';
 
 class BaseStatsInformation extends StatelessWidget {
-  const BaseStatsInformation({
-    this.label,
-    this.value,
-  });
+  const BaseStatsInformation({this.label, this.value, this.pokemonType});
 
   final String? label;
   final String? value;
+  final String? pokemonType;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +22,7 @@ class BaseStatsInformation extends StatelessWidget {
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
-                color: Colors.grey[800],
+                color: labelGrey,
               ),
             ),
           ),
@@ -37,11 +36,11 @@ class BaseStatsInformation extends StatelessWidget {
           Expanded(
             flex: 5,
             child: ClipRRect(
-              borderRadius: BorderRadius.all(Radius.circular(10)),
+              borderRadius: BorderRadius.circular(10),
               child: LinearProgressIndicator(
                 value: double?.parse(value ?? '0') / 200,
                 valueColor: new AlwaysStoppedAnimation<Color>(
-                    (value ?? '0').toString().baseStatsColor),
+                    pokemonType.toString().pokemonColor),
                 backgroundColor: Colors.grey[200],
                 minHeight: 6,
               ),

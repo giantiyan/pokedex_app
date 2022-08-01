@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:pokedex/api/models/pokemon_model.dart';
 import 'package:pokedex/features/home_page/widgets/pokemon_tile.dart';
+import 'package:pokedex/utilities/colors.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({this.pokemon});
@@ -24,7 +25,7 @@ class HomePage extends StatelessWidget {
                     Expanded(
                       child: TextFormField(
                         decoration: const InputDecoration(
-                          fillColor: Colors.white,
+                          fillColor: white,
                           prefixIcon: Icon(Icons.search),
                           hintText: 'Search here',
                           border: OutlineInputBorder(
@@ -53,7 +54,7 @@ class HomePage extends StatelessWidget {
                     ),
                   ])),
             )),
-        backgroundColor: Colors.red,
+        backgroundColor: red,
       ),
       body: GridView.builder(
         padding: const EdgeInsets.all(10.0),
@@ -70,7 +71,7 @@ class HomePage extends StatelessWidget {
         onPressed: () {
           // TODO:
         },
-        backgroundColor: Colors.red,
+        backgroundColor: red,
         child: const Icon(Icons.filter_list),
       ),
     );
