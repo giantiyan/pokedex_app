@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:pokedex/api/models/pokemon_model.dart';
 import 'package:pokedex/api/models/pokemon_type_model.dart';
+import 'package:pokedex/api/models/pokemon_about_model.dart';
 
 part 'app_state.freezed.dart';
 
@@ -12,6 +13,7 @@ class AppState with _$AppState {
     @JsonKey(name: 'pokemon') List<PokemonModel>? pokemon,
     @JsonKey(name: 'specific_pokemon') PokemonModel? specificPokemon,
     @JsonKey(name: 'types') List<PokemonTypeModel>? types,
+    @JsonKey(name: 'about') PokemonAboutModel? about,
   }) = _AppState;
 
   factory AppState.init() => AppState(pokemon: List.empty());

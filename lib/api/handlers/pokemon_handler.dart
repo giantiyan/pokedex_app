@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:dartx/dartx.dart';
+import 'package:pokedex/api/models/pokemon_about_model.dart';
 import 'package:pokedex/api/models/pokemon_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:pokedex/api/models/pokemon_type_model.dart';
@@ -20,10 +21,10 @@ class PokemonHandler {
 
       final pokemonResults = results
           .mapIndexed((index, pokemon) => PokemonModel(
-                name: pokemon['name'],
-                url: pokemon['url'],
-                id: index + 1,
-              ))
+        name: pokemon['name'],
+        url: pokemon['url'],
+        id: index + 1,
+      ))
           .toList();
       return pokemonResults;
     } else {
@@ -53,4 +54,29 @@ class PokemonHandler {
       return [];
     }
   }
+
+  static Future<PokemonAboutModel?> getPokemonAbout(String url) async {
+    var response = http.Response('', 100);
+
+    try {
+      response = await http.get(Uri.tryParse(url) ?? Uri());
+    } catch (e) {
+      print(e);
+    }
+
+    if (response.statusCode == 200) {
+      final results = jsonDecode(response.body);
+      final List abilityResults = results['abilities'];
+
+      return PokemonAboutModel(
+        height: results['height'],
+        weight: results['weight'],
+        base_experience: results['base_experience'],
+        abilities: abilityResults.map((ability) => ability['ability']['name'].toString()).toList(),
+      );
+    } else {
+      return null;
+    }
+  }
 }
+
