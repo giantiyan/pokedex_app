@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex/utilities/constants.dart';
+import 'package:intl/intl.dart';
 
 extension StringExt on String {
   String get capitalize =>
@@ -112,5 +113,10 @@ extension StringExt on String {
     }
 
     return color;
+  }
+
+  String get formatID {
+    var formatter = new NumberFormat('000');
+    return '#${formatter.format(int.parse(this))}';
   }
 }

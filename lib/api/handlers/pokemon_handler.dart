@@ -31,11 +31,11 @@ class PokemonHandler {
     }
   }
 
-  static Future<List<PokemonTypeModel>?> getPokemonType(int id) async {
+  static Future<List<PokemonTypeModel>?> getPokemonType(String url) async {
     var response = http.Response('', 100);
 
     try {
-      response = await http.get(Uri.tryParse('$pokemonURL/$id') ?? Uri());
+      response = await http.get(Uri.tryParse(url) ?? Uri());
     } catch (e) {
       print(e);
     }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pokedex/api/handlers/pokemon_handler.dart';
 import 'package:pokedex/api/models/pokemon_model.dart';
 import 'package:pokedex/api/models/pokemon_type_model.dart';
+import 'package:pokedex/features/details_page/details_page_connector.dart';
 import 'package:pokedex/features/home_page/widgets/type.dart';
 import 'package:pokedex/utilities/constants.dart';
 import 'package:pokedex/utilities/extensions.dart';
@@ -23,7 +24,7 @@ class _PokemonTileState extends State<PokemonTile> {
     Future.delayed(
       Duration.zero,
       () async {
-        await PokemonHandler.getPokemonType(widget.pokemon?.id ?? 0)
+        await PokemonHandler.getPokemonType(widget.pokemon?.url ?? '')
             .then((value) {
           if (!mounted) return;
           setState(() => types = value);
@@ -54,7 +55,12 @@ class _PokemonTileState extends State<PokemonTile> {
               color: Colors.transparent,
               child: InkWell(
                 onTap: () {
-                  // TODO:
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            DetailsPageConnector(widget.pokemon!)),
+                  );
                 },
                 child: Padding(
                   padding: const EdgeInsets.all(12),
