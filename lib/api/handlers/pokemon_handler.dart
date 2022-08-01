@@ -10,7 +10,7 @@ class PokemonHandler {
     var response = http.Response('', 100);
 
     try {
-      response = await http.get(Uri.tryParse(pokemonURL) ?? Uri());
+      response = await http.get(Uri.tryParse(pokemonListURL) ?? Uri());
     } catch (e) {
       print(e);
     }
@@ -43,9 +43,8 @@ class PokemonHandler {
     if (response.statusCode == 200) {
       final List results = jsonDecode(response.body)['types'];
       final typeResults = results
-          .mapIndexed((index, type) => PokemonTypeModel(
-                name: type['type']['name'],
-              ))
+          .mapIndexed(
+              (index, type) => PokemonTypeModel(name: type['type']['name']))
           .toList();
 
       return typeResults;
