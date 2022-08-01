@@ -2,6 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:pokedex/api/models/pokemon_type_model.dart';
 
 part 'pokemon_model.freezed.dart';
+
 part 'pokemon_model.g.dart';
 
 @freezed

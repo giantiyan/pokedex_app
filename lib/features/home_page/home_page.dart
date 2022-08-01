@@ -29,7 +29,7 @@ class HomePage extends StatelessWidget {
                           hintText: 'Search here',
                           border: OutlineInputBorder(
                               borderRadius:
-                              BorderRadius.all(Radius.circular(10.0)),
+                                  BorderRadius.all(Radius.circular(10.0)),
                               borderSide: BorderSide(
                                 width: 0,
                                 style: BorderStyle.none,
@@ -46,9 +46,7 @@ class HomePage extends StatelessWidget {
                         padding: EdgeInsets.symmetric(vertical: 12.0),
                         child: Text(
                           'Search',
-                          style: TextStyle(
-                            fontSize: 20,
-                          ),
+                          style: TextStyle(fontSize: 20),
                         ),
                       ),
                       onPressed: () async {},
@@ -66,13 +64,11 @@ class HomePage extends StatelessWidget {
           mainAxisSpacing: 10,
         ),
         itemCount: pokemon?.length,
-        itemBuilder: (context, index) {
-          return PokemonTile(pokemon: pokemon?[index]);
-        },
+        itemBuilder: (context, index) => PokemonTile(pokemon: pokemon?[index]),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-
+          // TODO:
         },
         backgroundColor: Colors.red,
         child: const Icon(Icons.filter_list),
