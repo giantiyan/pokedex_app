@@ -10,6 +10,7 @@ part 'app_state.g.dart';
 class AppState with _$AppState {
   factory AppState({
     @JsonKey(name: 'pokemon') List<PokemonModel>? pokemon,
+    @JsonKey(name: 'specific_pokemon') PokemonModel? specificPokemon,
     @JsonKey(name: 'types') List<PokemonTypeModel>? types,
   }) = _AppState;
 

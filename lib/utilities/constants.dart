@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 const pokemonListURL = 'https://pokeapi.co/api/v2/pokemon?limit=121&offset=0';
+
 const pokemonURL = 'https://pokeapi.co/api/v2/pokemon';
 
 const pokemonImage =
