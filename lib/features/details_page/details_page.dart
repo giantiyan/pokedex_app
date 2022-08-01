@@ -74,7 +74,6 @@ class DetailsPage extends StatelessWidget {
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black26.withOpacity(0.2),
-                      offset: const Offset(0.0, 0.0),
                       blurRadius: 5.0,
                       spreadRadius: 0.10,
                     )

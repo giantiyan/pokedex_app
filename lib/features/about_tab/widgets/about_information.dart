@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class AboutInformation extends StatelessWidget {
-  const AboutInformation(
-      this.label,
-      this.value,
-      );
+  const AboutInformation({
+    this.label,
+    this.value,
+  });
 
   final String? label;
   final String? value;
