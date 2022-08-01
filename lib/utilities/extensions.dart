@@ -6,7 +6,11 @@ extension StringExt on String {
   String get capitalize =>
       '${this[0].toUpperCase()}${substring(1).toLowerCase()}';
 
-  String get toTitleCase => this.toLowerCase().split(' ').map((word) => word[0].toUpperCase() + word.substring(1)).join(' ');
+  String get toTitleCase => this
+      .toLowerCase()
+      .split(' ')
+      .map((word) => word[0].toUpperCase() + word.substring(1))
+      .join(' ');
 
   String get pokemonImage {
     // return 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/$this.png';
@@ -137,4 +141,23 @@ extension StringExt on String {
   }
 
   String get toBaseExp => '$this xp';
+
+  String get shortcut => replaceAll('Special', 'Sp')
+      .replaceAll('attack', 'Atk')
+      .replaceAll('defense', 'Def');
+
+  Color get baseStatsColor {
+    var color;
+    var value = double.parse(this) / 200;
+
+    if (value < 0.25) {
+      color = Color(0xfffa6e70);
+    } else if (value < 0.5) {
+      color = Color(0xffbfab32);
+    } else {
+      color = Color(0xff51d0b1);
+    }
+
+    return color;
+  }
 }

@@ -29,3 +29,16 @@ class GetPokemonAboutAction extends ReduxAction<AppState> {
     return state.copyWith(about: about);
   }
 }
+
+/// Get pokemon base stats details and save it to the state
+class GetPokemonBaseStatsAction extends ReduxAction<AppState> {
+  GetPokemonBaseStatsAction(this.pokemonURL);
+
+  final String? pokemonURL;
+
+  @override
+  Future<AppState?> reduce() async {
+    final baseStats = await PokemonHandler.getPokemonBaseStats(pokemonURL!);
+    return state.copyWith(base_stats: baseStats);
+  }
+}

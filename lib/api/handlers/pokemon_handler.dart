@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:dartx/dartx.dart';
 import 'package:pokedex/api/models/pokemon_about_model.dart';
+import 'package:pokedex/api/models/pokemon_base_stats_model.dart';
 import 'package:pokedex/api/models/pokemon_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:pokedex/api/models/pokemon_type_model.dart';
@@ -72,11 +73,38 @@ class PokemonHandler {
         height: results['height'],
         weight: results['weight'],
         base_experience: results['base_experience'],
-        abilities: abilityResults.map((ability) => ability['ability']['name'].toString()).toList(),
+        abilities: abilityResults
+            .map((ability) => ability['ability']['name'].toString())
+            .toList(),
+      );
+    } else {
+      return null;
+    }
+  }
+
+  static Future<PokemonBaseStatsModel?> getPokemonBaseStats(String url) async {
+    var response = http.Response('', 100);
+
+    try {
+      response = await http.get(Uri.tryParse(url) ?? Uri());
+    } catch (e) {
+      print(e);
+    }
+
+    if (response.statusCode == 200) {
+      final results = jsonDecode(response.body);
+      final List baseStatsResults = results['stats'];
+
+      return PokemonBaseStatsModel(
+        base_stat: baseStatsResults
+            .map((base_stat) => base_stat['base_stat'].toString())
+            .toList(),
+        name: baseStatsResults
+            .map((name) => name['stat']['name'].toString())
+            .toList(),
       );
     } else {
       return null;
     }
   }
 }
-
