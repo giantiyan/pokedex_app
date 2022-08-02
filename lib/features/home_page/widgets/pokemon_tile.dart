@@ -82,7 +82,8 @@ class _PokemonTileState extends State<PokemonTile> {
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                ...?types?.map((type) => Type(type.name))
+                                ...?types
+                                    ?.map((type) => Type(typeName: type.name))
                               ],
                             ),
                             Flexible(

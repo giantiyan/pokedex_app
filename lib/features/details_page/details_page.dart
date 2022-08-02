@@ -54,7 +54,8 @@ class DetailsPage extends StatelessWidget {
                           ),
                           Row(
                             children: [
-                              ...?types?.map((type) => Type(type.name))
+                              ...?types
+                                  ?.map((type) => Type(typeName: type.name))
                             ],
                           ),
                           Center(
@@ -109,7 +110,10 @@ class DetailsPage extends StatelessWidget {
                                     pokemonType: types?.first.name,
                                   ),
                                   Container(child: Text('TODO 3')),
-                                  MovesTabConnector(specificPokemon?.url),
+                                  MovesTabConnector(
+                                    pokemonURL: specificPokemon?.url,
+                                    pokemonType: types?.first.name,
+                                  ),
                                 ],
                               ),
                             )

@@ -6,16 +6,23 @@ import 'package:pokedex/state/actions/details_page_actions.dart';
 import 'package:pokedex/state/app_state.dart';
 
 class MovesTabConnector extends StatelessWidget {
-  const MovesTabConnector(this.pokemonURL);
+  const MovesTabConnector({
+    this.pokemonURL,
+    this.pokemonType,
+  });
 
   final String? pokemonURL;
+  final String? pokemonType;
 
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, MovesTabVm>(
       vm: () => MovesTabVmFactory(),
       onInit: (vm) => vm.dispatch(GetPokemonMovesAction(pokemonURL)),
-      builder: (context, vm) => MovesTab(vm.moves),
+      builder: (context, vm) => MovesTab(
+        moves: vm.moves,
+        pokemonType: pokemonType,
+      ),
     );
   }
 }
