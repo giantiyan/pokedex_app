@@ -12,40 +12,38 @@ class AboutTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return (about != null)
-        ? Scrollbar(
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.all(18.0),
-                child: Container(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      AboutInformation(
-                        label: height,
-                        value: about?.height.toString().toHeight,
-                      ),
-                      AboutInformation(
-                        label: weight,
-                        value: about?.weight.toString().toWeight,
-                      ),
-                      AboutInformation(
-                        label: abilities,
-                        value: about?.abilities
-                            ?.toString()
-                            .replaceBracket
-                            .replaceDash
-                            .toTitleCase,
-                      ),
-                      AboutInformation(
-                        label: baseExperience,
-                        value: about?.base_experience.toString().toBaseExp,
-                      ),
-                    ],
+        ? SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(18.0),
+            child: Container(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  AboutInformation(
+                    label: height,
+                    value: about?.height.toString().toHeight,
                   ),
-                ),
+                  AboutInformation(
+                    label: weight,
+                    value: about?.weight.toString().toWeight,
+                  ),
+                  AboutInformation(
+                    label: abilities,
+                    value: about?.abilities
+                        ?.toString()
+                        .replaceBracket
+                        .replaceDash
+                        .toTitleCase,
+                  ),
+                  AboutInformation(
+                    label: baseExperience,
+                    value: about?.base_experience.toString().toBaseExp,
+                  ),
+                ],
               ),
             ),
-          )
+          ),
+        )
         : Center(child: CircularProgressIndicator());
   }
 }

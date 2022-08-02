@@ -19,27 +19,25 @@ class BaseStatsTab extends StatelessWidget {
         baseStats?.name?.map((name) => name.toString()).toList() ?? [];
 
     return (baseStats != null)
-        ? Scrollbar(
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.all(18.0),
-                child: Container(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      ...?baseStats?.base_stat?.mapIndexed(
-                        (index, base_stat) => BaseStatsInformation(
-                          label: statNameList[index].baseStatLabel,
-                          value: base_stat.toString(),
-                          pokemonType: pokemonType,
-                        ),
-                      ),
-                    ],
+        ? SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(18.0),
+            child: Container(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ...?baseStats?.base_stat?.mapIndexed(
+                    (index, base_stat) => BaseStatsInformation(
+                      label: statNameList[index].baseStatLabel,
+                      value: base_stat.toString(),
+                      pokemonType: pokemonType,
+                    ),
                   ),
-                ),
+                ],
               ),
             ),
-          )
+          ),
+        )
         : Center(child: CircularProgressIndicator());
   }
 }

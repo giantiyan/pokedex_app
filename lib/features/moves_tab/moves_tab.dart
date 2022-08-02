@@ -15,22 +15,18 @@ class MovesTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return (moves != null)
-        ? Scrollbar(
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Wrap(
-                  children: moves?.name?.map((name) {
-                        return Type(
-                          typeName: name.capitalize.replaceDash,
-                          pokemonType: pokemonType,
-                        );
-                      }).toList() ??
-                      [],
-                ),
-              ),
+        ? SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Wrap(
+              children: moves?.name?.map((name) => Type(
+                      typeName: name.replaceDash.toTitleCase,
+                      pokemonType: pokemonType,
+                    )).toList() ??
+                  [],
             ),
-          )
+          ),
+        )
         : Center(child: CircularProgressIndicator());
   }
 }
