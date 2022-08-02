@@ -4,6 +4,7 @@ import 'package:pokedex/api/models/pokemon_about_model.dart';
 import 'package:pokedex/api/models/pokemon_base_stats_model.dart';
 import 'package:pokedex/api/models/pokemon_model.dart';
 import 'package:http/http.dart' as http;
+import 'package:pokedex/api/models/pokemon_moves_model.dart';
 import 'package:pokedex/api/models/pokemon_type_model.dart';
 import 'package:pokedex/utilities/constants.dart';
 
@@ -101,6 +102,29 @@ class PokemonHandler {
             .toList(),
         name: baseStatsResults
             .map((name) => name['stat']['name'].toString())
+            .toList(),
+      );
+    } else {
+      return null;
+    }
+  }
+
+  static Future<PokemonMovesModel?> getPokemonMoves(String url) async {
+    var response = http.Response('', 100);
+
+    try {
+      response = await http.get(Uri.tryParse(url) ?? Uri());
+    } catch (e) {
+      print(e);
+    }
+
+    if (response.statusCode == 200) {
+      final results = jsonDecode(response.body);
+      final List movesResults = results['moves'];
+
+      return PokemonMovesModel(
+        name: movesResults
+            .map((name) => name['move']['name'].toString())
             .toList(),
       );
     } else {

@@ -5,6 +5,7 @@ import 'package:pokedex/api/models/pokemon_type_model.dart';
 import 'package:pokedex/features/about_tab/about_tab_connector.dart';
 import 'package:pokedex/features/base_stats_tab/base_stats_connector.dart';
 import 'package:pokedex/features/home_page/widgets/type.dart';
+import 'package:pokedex/features/moves_tab/moves_tab_connector.dart';
 import 'package:pokedex/utilities/colors.dart';
 import 'package:pokedex/utilities/extensions.dart';
 import 'package:pokedex/utilities/string_constants.dart';
@@ -108,7 +109,7 @@ class DetailsPage extends StatelessWidget {
                                     pokemonType: types?.first.name,
                                   ),
                                   Container(child: Text('TODO 3')),
-                                  Container(child: Text('TODO 4')),
+                                  MovesTabConnector(specificPokemon?.url),
                                 ],
                               ),
                             )
