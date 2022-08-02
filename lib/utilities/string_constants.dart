@@ -7,4 +7,3 @@ const String height = 'Height';
 const String weight = 'Weight';
 const String abilities = 'Abilities';
 const String baseExperience = 'Base Experience';
-

@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex/utilities/constants.dart';
+import 'package:pokedex/utilities/colors.dart';
 import 'package:intl/intl.dart';
 
 extension StringExt on String {
   String get capitalize =>
       '${this[0].toUpperCase()}${substring(1).toLowerCase()}';
 
-  String get toTitleCase => this.toLowerCase().split(' ').map((word) => word[0].toUpperCase() + word.substring(1)).join(' ');
+  String get toTitleCase => this
+      .toLowerCase()
+      .split(' ')
+      .map((word) => word[0].toUpperCase() + word.substring(1))
+      .join(' ');
 
   String get pokemonImage {
     // return 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/$this.png';
@@ -14,7 +18,7 @@ extension StringExt on String {
   }
 
   Color get pokemonColor {
-    var color = Colors.white;
+    var color = white;
 
     switch (this) {
       case 'fire':
@@ -107,9 +111,10 @@ extension StringExt on String {
           color = kFairy;
         }
         break;
+
       default:
         {
-          color = Colors.white;
+          color = white;
         }
         break;
     }
@@ -137,4 +142,33 @@ extension StringExt on String {
   }
 
   String get toBaseExp => '$this xp';
+
+  String get shortcut => replaceAll('special', 'Sp')
+      .replaceAll('Special', 'Sp')
+      .replaceAll('attack', 'Atk')
+      .replaceAll('defense', 'Def');
+
+  String get baseStatLabel {
+    if (this == 'hp')
+      return this.toUpperCase();
+    else if (this == 'attack' || this == 'defense' || this == 'speed')
+      return this.capitalize;
+    else
+      return this.shortcut;
+  }
+
+  Color get baseStatsColor {
+    var color;
+    var value = double.parse(this) / 200;
+
+    if (value < 0.25) {
+      color = kFire;
+    } else if (value < 0.5) {
+      color = kElectric;
+    } else {
+      color = kGrass;
+    }
+
+    return color;
+  }
 }
