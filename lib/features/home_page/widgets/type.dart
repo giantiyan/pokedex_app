@@ -3,9 +3,13 @@ import 'package:pokedex/utilities/colors.dart';
 import 'package:pokedex/utilities/extensions.dart';
 
 class Type extends StatelessWidget {
-  const Type(this.typeName);
+  const Type({
+    this.typeName,
+    this.pokemonType,
+  });
 
   final String? typeName;
+  final String? pokemonType;
 
   @override
   Widget build(BuildContext context) {
@@ -13,19 +17,21 @@ class Type extends StatelessWidget {
       children: [
         Container(
           padding: EdgeInsets.symmetric(
-            horizontal: 12,
-            vertical: 5,
+            horizontal: 8,
+            vertical: 6,
           ),
           margin: EdgeInsets.only(
             bottom: 8,
-            right: 8,
+            right: 4,
           ),
           decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.25),
-            borderRadius: BorderRadius.all(Radius.circular(25)),
+            color: pokemonType != null
+                ? pokemonType.toString().pokemonColor
+                : white.withOpacity(0.25),
+            borderRadius: BorderRadius.circular(25),
           ),
           child: Text(
-            typeName?.capitalize ?? '',
+            typeName?.toTitleCase ?? '',
             style: TextStyle(color: white),
           ),
         ),
