@@ -28,10 +28,10 @@ class Type extends StatelessWidget {
             color: pokemonType != null
                 ? pokemonType.toString().pokemonColor
                 : white.withOpacity(0.25),
-            borderRadius: BorderRadius.all(Radius.circular(25)),
+            borderRadius: BorderRadius.circular(25),
           ),
           child: Text(
-            typeName?.capitalize ?? '',
+            typeName?.toTitleCase ?? '',
             style: TextStyle(color: white),
           ),
         ),
