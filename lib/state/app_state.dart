@@ -3,6 +3,7 @@ import 'package:pokedex/api/models/pokemon_model.dart';
 import 'package:pokedex/api/models/pokemon_type_model.dart';
 import 'package:pokedex/api/models/pokemon_about_model.dart';
 import 'package:pokedex/api/models/pokemon_base_stats_model.dart';
+import 'package:pokedex/api/models/pokemon_evolutions_model.dart';
 import 'package:pokedex/api/models/pokemon_moves_model.dart';
 
 part 'app_state.freezed.dart';
@@ -17,6 +18,7 @@ class AppState with _$AppState {
     @JsonKey(name: 'types') List<PokemonTypeModel>? types,
     @JsonKey(name: 'about') PokemonAboutModel? about,
     @JsonKey(name: 'base_stats') PokemonBaseStatsModel? base_stats,
+    @JsonKey(name: 'evolutions') PokemonEvolutionsModel? evolutions,
     @JsonKey(name: 'moves') PokemonMovesModel? moves,
   }) = _AppState;
 

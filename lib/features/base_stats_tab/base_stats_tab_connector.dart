@@ -1,7 +1,7 @@
 import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:pokedex/features/base_stats_tab/base_stats_tab.dart';
-import 'package:pokedex/features/base_stats_tab/base_stats_vm.dart';
+import 'package:pokedex/features/base_stats_tab/base_stats_tab_vm.dart';
 import 'package:pokedex/state/actions/details_page_actions.dart';
 import 'package:pokedex/state/app_state.dart';
 

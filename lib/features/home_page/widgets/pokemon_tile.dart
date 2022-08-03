@@ -19,6 +19,7 @@ class PokemonTile extends StatefulWidget {
 
 class _PokemonTileState extends State<PokemonTile> {
   List<PokemonTypeModel>? types;
+  String? url;
 
   @override
   void initState() {
@@ -68,7 +69,7 @@ class _PokemonTileState extends State<PokemonTile> {
                   child: Column(
                     children: [
                       Text(
-                        widget.pokemon?.name?.toString().capitalize ?? '',
+                        widget.pokemon?.name?.toString().replaceDash.toTitleCase ?? '',
                         style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,

@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:dartx/dartx.dart';
 import 'package:pokedex/api/models/pokemon_about_model.dart';
 import 'package:pokedex/api/models/pokemon_base_stats_model.dart';
+import 'package:pokedex/api/models/pokemon_evolutions_model.dart';
 import 'package:pokedex/api/models/pokemon_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:pokedex/api/models/pokemon_moves_model.dart';
@@ -104,6 +105,88 @@ class PokemonHandler {
             .map((name) => name['stat']['name'].toString())
             .toList(),
       );
+    } else {
+      return null;
+    }
+  }
+
+  static Future<PokemonEvolutionsModel?> getPokemonEvolutionChain(
+      int id) async {
+    var response = http.Response('', 100);
+
+    try {
+      response =
+          await http.get(Uri.tryParse('$pokemonSpeciesURL/$id') ?? Uri());
+    } catch (e) {
+      print(e);
+    }
+
+    if (response.statusCode == 200) {
+      final results = jsonDecode(response.body);
+      var evolutionChainResults = results['evolution_chain']['url'];
+
+      return getPokemonEvolutions(evolutionChainResults);
+    } else {
+      return null;
+    }
+  }
+
+  static Future<PokemonEvolutionsModel?> getPokemonEvolutions(
+      String url) async {
+    var response = http.Response('', 100);
+
+    try {
+      response = await http.get(Uri.tryParse(url) ?? Uri());
+    } catch (e) {
+      print(e);
+    }
+
+    if (response.statusCode == 200) {
+      final results = jsonDecode(response.body)['chain'];
+      final List secondEvolutionResults = results['evolves_to'];
+      var hasSecondEvolution;
+      var hasThirdEvolution;
+
+      if (secondEvolutionResults.isEmpty) {
+        hasSecondEvolution = false;
+        hasThirdEvolution = false;
+      } else {
+        hasSecondEvolution = true;
+
+        if (secondEvolutionResults.first['evolves_to'].isEmpty)
+          hasThirdEvolution = false;
+        else
+          hasThirdEvolution = true;
+      }
+
+      return PokemonEvolutionsModel(
+        first_evolution: PokemonModel(
+          name: results['species']['name'],
+          url: results['species']['url'],
+          id: int.parse(results['species']['url'].split('/')[6]),
+        ),
+        second_evolution: hasSecondEvolution
+            ? secondEvolutionResults
+                .map((pokemon) => PokemonModel(
+                      name: pokemon['species']['name'],
+                      url: pokemon['species']['url'],
+                      id: int.parse(pokemon['species']['url'].split('/')[6]),
+                    ))
+                .toList()
+            : null,
+        third_evolution: hasThirdEvolution
+            ? secondEvolutionResults
+                .mapIndexed((index, pokemon) => PokemonModel(
+                      name: pokemon['evolves_to'][index]['species']['name'],
+                      url: pokemon['evolves_to'][index]['species']['url'],
+                      id: int.parse(pokemon['evolves_to'][index]['species']
+                              ['url']
+                          .split('/')[6]),
+                    ))
+                .toList()
+            : null,
+      );
+
     } else {
       return null;
     }

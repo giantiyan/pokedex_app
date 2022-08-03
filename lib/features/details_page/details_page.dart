@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:pokedex/api/models/pokemon_model.dart';
 import 'package:pokedex/api/models/pokemon_type_model.dart';
 import 'package:pokedex/features/about_tab/about_tab_connector.dart';
-import 'package:pokedex/features/base_stats_tab/base_stats_connector.dart';
+import 'package:pokedex/features/base_stats_tab/base_stats_tab_connector.dart';
+import 'package:pokedex/features/evolution_tab/evolution_tab_connector.dart';
 import 'package:pokedex/features/home_page/widgets/type.dart';
 import 'package:pokedex/features/moves_tab/moves_tab_connector.dart';
 import 'package:pokedex/utilities/colors.dart';
@@ -34,7 +35,10 @@ class DetailsPage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            (specificPokemon?.name).toString().capitalize,
+                            (specificPokemon?.name)
+                                .toString()
+                                .replaceDash
+                                .toTitleCase,
                             style: const TextStyle(
                               fontSize: 32,
                               fontWeight: FontWeight.bold,
@@ -59,14 +63,12 @@ class DetailsPage extends StatelessWidget {
                             ],
                           ),
                           Center(
-                            child: Container(
+                            child: Image.network(
+                              specificPokemon?.id.toString().pokemonImage ?? '',
                               height: 210,
-                              margin: EdgeInsets.only(bottom: 20),
-                              child: Image.network(
-                                  specificPokemon?.id.toString().pokemonImage ??
-                                      ''),
                             ),
                           ),
+                          SizedBox(height: 10),
                         ],
                       )),
                   Expanded(
@@ -109,7 +111,7 @@ class DetailsPage extends StatelessWidget {
                                     pokemonURL: specificPokemon?.url,
                                     pokemonType: types?.first.name,
                                   ),
-                                  Container(child: Text('TODO 3')),
+                                  EvolutionTabConnector(specificPokemon?.id),
                                   MovesTabConnector(
                                     pokemonURL: specificPokemon?.url,
                                     pokemonType: types?.first.name,
