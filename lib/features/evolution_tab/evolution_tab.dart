@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex/api/models/pokemon_evolutions_model.dart';
-import 'package:pokedex/features/evolution_tab/widgets/evolutions_list_tile.dart';
-import 'package:pokedex/utilities/extensions.dart';
+import 'package:pokedex/features/evolution_tab/widgets/evolution_tile.dart';
 
 class EvolutionTab extends StatelessWidget {
   const EvolutionTab({this.evolutions});
@@ -12,85 +11,46 @@ class EvolutionTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return (evolutions != null)
         ? Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 18),
+            padding: const EdgeInsets.symmetric(horizontal: 0),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Expanded(
-                  child: ListView(
-                    physics: BouncingScrollPhysics(),
-                    shrinkWrap: true,
+                SingleChildScrollView(
+                  physics: BouncingScrollPhysics(),
+                  child: Column(
                     children: [
-                      Column(
-                        children: [
-                          ((evolutions?.third_evolution.length ?? 0) > 0)
-                              ? Image.network(
-                                  evolutions?.first_evolution?.id
-                                          .toString()
-                                          .pokemonImage ??
-                                      '',
-                                  height: 100,
-                                )
-                              : ((evolutions?.second_evolution.length ?? 0) > 0)
-                                  ? Image.network(
-                                      evolutions?.first_evolution?.id
-                                              .toString()
-                                              .pokemonImage ??
-                                          '',
-                                      height: 150,
-                                    )
-                                  : Image.network(
-                                      evolutions?.first_evolution?.id
-                                              .toString()
-                                              .pokemonImage ??
-                                          '',
-                                      height: 175,
-                                    ),
-                          Text(
-                              evolutions?.first_evolution?.name
-                                      .toString()
-                                      .replaceDash
-                                      .toTitleCase ??
-                                  '',
-                              style: TextStyle(fontWeight: FontWeight.w500)),
-                          Text(evolutions?.first_evolution?.id
-                                  .toString()
-                                  .formatID ??
-                              ''),
-                        ],
-                      ),
+                      EvolutionTile(
+                        name: evolutions?.firstEvolution?.name,
+                        id: evolutions?.firstEvolution?.id,
+                        isNotFirstEvolution: false,
+                      )
                     ],
                   ),
                 ),
-                if ((evolutions?.second_evolution.length ?? 0) > 0)
-                  Expanded(
-                    child: ListView.builder(
-                      physics: BouncingScrollPhysics(),
-                      shrinkWrap: true,
-                      itemCount: evolutions?.second_evolution.length,
-                      itemBuilder: (context, index) => EvolutionsListTile(
-                        pokemon: evolutions?.second_evolution[index],
-                        secondEvolutionLength:
-                            evolutions?.second_evolution.length,
-                        thirdEvolutionLength:
-                            evolutions?.third_evolution.length,
-                      ),
-                    ),
+                if (evolutions?.secondEvolutions.isNotEmpty ?? false)
+                  SingleChildScrollView(
+                    physics: BouncingScrollPhysics(),
+                    child: Column(children: [
+                      ...?evolutions?.secondEvolutions
+                          .map((pokemon) => EvolutionTile(
+                                name: pokemon.name,
+                                id: pokemon.id,
+                                isNotFirstEvolution: true,
+                              ))
+                    ]),
                   ),
-                if ((evolutions?.third_evolution.length ?? 0) > 0)
-                  Expanded(
-                    child: ListView.builder(
-                      physics: BouncingScrollPhysics(),
-                      shrinkWrap: true,
-                      itemCount: evolutions?.third_evolution.length,
-                      itemBuilder: (context, index) => EvolutionsListTile(
-                        pokemon: evolutions?.third_evolution[index],
-                        secondEvolutionLength:
-                            evolutions?.second_evolution.length,
-                        thirdEvolutionLength:
-                            evolutions?.third_evolution.length,
-                      ),
-                    ),
+                if (evolutions?.thirdEvolutions.isNotEmpty ?? false)
+                  SingleChildScrollView(
+                    physics: BouncingScrollPhysics(),
+                    child: Column(children: [
+                      ...?evolutions?.thirdEvolutions
+                          .map((pokemon) => EvolutionTile(
+                                name: pokemon.name,
+                                id: pokemon.id,
+                                isNotFirstEvolution: true,
+                              ))
+                    ]),
                   ),
               ],
             ),

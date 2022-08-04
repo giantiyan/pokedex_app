@@ -8,9 +8,13 @@ part 'pokemon_evolutions_model.g.dart';
 @freezed
 class PokemonEvolutionsModel with _$PokemonEvolutionsModel {
   factory PokemonEvolutionsModel({
-    @JsonKey(name: 'first_evolution') PokemonModel? first_evolution,
-    @Default(<PokemonModel>[]) @JsonKey(name: 'second_evolution') List<PokemonModel> second_evolution,
-    @Default(<PokemonModel>[]) @JsonKey(name: 'third_evolution') List<PokemonModel> third_evolution,
+    @JsonKey(name: 'firstEvolution') PokemonModel? firstEvolution,
+    @Default(<PokemonModel>[])
+    @JsonKey(name: 'secondEvolutions')
+        List<PokemonModel> secondEvolutions,
+    @Default(<PokemonModel>[])
+    @JsonKey(name: 'thirdEvolutions')
+        List<PokemonModel> thirdEvolutions,
   }) = _PokemonEvolutionsModel;
 
   factory PokemonEvolutionsModel.fromJson(Map<String, dynamic> json) =>

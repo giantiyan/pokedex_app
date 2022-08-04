@@ -51,7 +51,8 @@ class GetPokemonEvolutionChainAction extends ReduxAction<AppState> {
 
   @override
   Future<AppState?> reduce() async {
-    final evolutions = await PokemonHandler.getPokemonEvolutionChain(pokemonId!);
+    final evolutions =
+        await PokemonHandler.getPokemonEvolutionChain(pokemonId!);
     return state.copyWith(evolutions: evolutions);
   }
 }
@@ -68,5 +69,3 @@ class GetPokemonMovesAction extends ReduxAction<AppState> {
     return state.copyWith(moves: moves);
   }
 }
-
-

@@ -69,7 +69,11 @@ class _PokemonTileState extends State<PokemonTile> {
                   child: Column(
                     children: [
                       Text(
-                        widget.pokemon?.name?.toString().replaceDash.toTitleCase ?? '',
+                        widget.pokemon?.name
+                                ?.toString()
+                                .replaceDash
+                                .toTitleCase ??
+                            '',
                         style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
@@ -94,9 +98,7 @@ class _PokemonTileState extends State<PokemonTile> {
                                   Widget child,
                                   ImageChunkEvent? loadingProgress) {
                                 if (loadingProgress == null) return child;
-                                return Center(
-                                  child: spinKitRipple,
-                                );
+                                return Center(child: spinKitRipple);
                               },
                             )),
                           ],

@@ -176,12 +176,12 @@ class PokemonHandler {
           : [];
 
       return PokemonEvolutionsModel(
-        first_evolution: PokemonModel(
+        firstEvolution: PokemonModel(
           name: results['species']['name'],
           url: results['species']['url'],
           id: int.parse(results['species']['url'].split('/')[6]),
         ),
-        second_evolution: hasSecondEvolution
+        secondEvolutions: hasSecondEvolution
             ? secondEvolutionResults.map((pokemon) {
                 return PokemonModel(
                   name: pokemon['species']['name'],
@@ -190,7 +190,7 @@ class PokemonHandler {
                 );
               }).toList()
             : [],
-        third_evolution: thirdEvolutionList,
+        thirdEvolutions: thirdEvolutionList,
       );
     } else {
       return null;
