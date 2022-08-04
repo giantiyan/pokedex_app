@@ -159,6 +159,22 @@ class PokemonHandler {
           hasThirdEvolution = true;
       }
 
+      var thirdEvolutionList = <PokemonModel>[];
+
+      hasThirdEvolution
+          ? secondEvolutionResults.map((pokemon) {
+              List thirdEvolutionResults = pokemon['evolves_to'];
+
+              thirdEvolutionResults.map((pokemon2) {
+                thirdEvolutionList.add(PokemonModel(
+                  name: pokemon2['species']['name'],
+                  url: pokemon2['species']['url'],
+                  id: int.parse(pokemon2['species']['url'].split('/')[6]),
+                ));
+              }).toList();
+            }).toList()
+          : [];
+
       return PokemonEvolutionsModel(
         first_evolution: PokemonModel(
           name: results['species']['name'],
@@ -166,27 +182,16 @@ class PokemonHandler {
           id: int.parse(results['species']['url'].split('/')[6]),
         ),
         second_evolution: hasSecondEvolution
-            ? secondEvolutionResults
-                .map((pokemon) => PokemonModel(
-                      name: pokemon['species']['name'],
-                      url: pokemon['species']['url'],
-                      id: int.parse(pokemon['species']['url'].split('/')[6]),
-                    ))
-                .toList()
-            : null,
-        third_evolution: hasThirdEvolution
-            ? secondEvolutionResults
-                .mapIndexed((index, pokemon) => PokemonModel(
-                      name: pokemon['evolves_to'][index]['species']['name'],
-                      url: pokemon['evolves_to'][index]['species']['url'],
-                      id: int.parse(pokemon['evolves_to'][index]['species']
-                              ['url']
-                          .split('/')[6]),
-                    ))
-                .toList()
-            : null,
+            ? secondEvolutionResults.map((pokemon) {
+                return PokemonModel(
+                  name: pokemon['species']['name'],
+                  url: pokemon['species']['url'],
+                  id: int.parse(pokemon['species']['url'].split('/')[6]),
+                );
+              }).toList()
+            : [],
+        third_evolution: thirdEvolutionList,
       );
-
     } else {
       return null;
     }
