@@ -1,12 +1,18 @@
 import 'dart:async';
 
-import 'package:async_redux/async_redux.dart';
 import 'package:pokedex/api/handlers/pokemon_handler.dart';
+import 'package:pokedex/state/actions/actions.dart';
 import 'package:pokedex/state/app_state.dart';
 
+const getPokemonTypesKey = 'get_pokemon_types_key';
+const getPokemonAboutKey = 'get_pokemon_about_key';
+const getPokemonBaseStatsKey = 'get_pokemon_base_stats_key';
+const getPokemonEvolutionKey = 'get_pokemon_evolution_key';
+const getPokemonMovesKey = 'get_pokemon_moves_key';
+
 /// Get pokemon types and save it to the state
-class GetPokemonTypesAction extends ReduxAction<AppState> {
-  GetPokemonTypesAction(this.pokemonURL);
+class GetPokemonTypesAction extends LoadingAction {
+  GetPokemonTypesAction(this.pokemonURL) : super(actionKey: getPokemonTypesKey);
 
   final String? pokemonURL;
 
@@ -18,8 +24,8 @@ class GetPokemonTypesAction extends ReduxAction<AppState> {
 }
 
 /// Get pokemon about details and save it to the state
-class GetPokemonAboutAction extends ReduxAction<AppState> {
-  GetPokemonAboutAction(this.pokemonURL);
+class GetPokemonAboutAction extends LoadingAction {
+  GetPokemonAboutAction(this.pokemonURL) : super(actionKey: getPokemonAboutKey);
 
   final String? pokemonURL;
 
@@ -31,8 +37,9 @@ class GetPokemonAboutAction extends ReduxAction<AppState> {
 }
 
 /// Get pokemon base stats details and save it to the state
-class GetPokemonBaseStatsAction extends ReduxAction<AppState> {
-  GetPokemonBaseStatsAction(this.pokemonURL);
+class GetPokemonBaseStatsAction extends LoadingAction {
+  GetPokemonBaseStatsAction(this.pokemonURL)
+      : super(actionKey: getPokemonBaseStatsKey);
 
   final String? pokemonURL;
 
@@ -44,8 +51,9 @@ class GetPokemonBaseStatsAction extends ReduxAction<AppState> {
 }
 
 /// Get pokemon evolution details and save it to the state
-class GetPokemonEvolutionChainAction extends ReduxAction<AppState> {
-  GetPokemonEvolutionChainAction(this.pokemonId);
+class GetPokemonEvolutionChainAction extends LoadingAction {
+  GetPokemonEvolutionChainAction(this.pokemonId)
+      : super(actionKey: getPokemonEvolutionKey);
 
   final int? pokemonId;
 
@@ -58,8 +66,8 @@ class GetPokemonEvolutionChainAction extends ReduxAction<AppState> {
 }
 
 /// Get pokemon moves details and save it to the state
-class GetPokemonMovesAction extends ReduxAction<AppState> {
-  GetPokemonMovesAction(this.pokemonURL);
+class GetPokemonMovesAction extends LoadingAction {
+  GetPokemonMovesAction(this.pokemonURL) : super(actionKey: getPokemonMovesKey);
 
   final String? pokemonURL;
 

@@ -5,6 +5,7 @@ import 'package:pokedex/api/models/pokemon_about_model.dart';
 import 'package:pokedex/api/models/pokemon_base_stats_model.dart';
 import 'package:pokedex/api/models/pokemon_evolutions_model.dart';
 import 'package:pokedex/api/models/pokemon_moves_model.dart';
+import 'package:async_redux/async_redux.dart';
 
 part 'app_state.freezed.dart';
 
@@ -20,9 +21,13 @@ class AppState with _$AppState {
     @JsonKey(name: 'base_stats') PokemonBaseStatsModel? base_stats,
     @JsonKey(name: 'evolutions') PokemonEvolutionsModel? evolutions,
     @JsonKey(name: 'moves') PokemonMovesModel? moves,
+    @Default(Wait.empty) @JsonKey(name: 'wait', ignore: true) Wait wait,
   }) = _AppState;
 
-  factory AppState.init() => AppState(pokemon: List.empty());
+  factory AppState.init() => AppState(
+        pokemon: List.empty(),
+        wait: Wait(),
+      );
 
   factory AppState.fromJson(Map<String, dynamic> json) =>
       _$AppStateFromJson(json);
