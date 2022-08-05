@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:pokedex/api/handlers/pokemon_handler.dart';
 import 'package:pokedex/api/models/pokemon_model.dart';
@@ -92,15 +93,16 @@ class _PokemonTileState extends State<PokemonTile> {
                               ],
                             ),
                             Flexible(
-                                child: Image.network(
-                              widget.pokemon?.id.toString().pokemonImage ?? '',
-                              loadingBuilder: (BuildContext context,
-                                  Widget child,
-                                  ImageChunkEvent? loadingProgress) {
-                                if (loadingProgress == null) return child;
-                                return Center(child: spinKitRipple);
-                              },
-                            )),
+                              child: CachedNetworkImage(
+                                imageUrl: widget.pokemon?.id
+                                        .toString()
+                                        .pokemonImage ??
+                                    '',
+                                placeholder: (context, url) => spinKitRipple,
+                                errorWidget: (context, url, error) =>
+                                    const Icon(Icons.error),
+                              ),
+                            ),
                           ],
                         ),
                       ),

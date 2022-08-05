@@ -1,5 +1,5 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-
 import 'package:pokedex/api/models/pokemon_model.dart';
 import 'package:pokedex/api/models/pokemon_type_model.dart';
 import 'package:pokedex/features/about_tab/about_tab_connector.dart';
@@ -8,6 +8,7 @@ import 'package:pokedex/features/evolution_tab/evolution_tab_connector.dart';
 import 'package:pokedex/features/home_page/widgets/type.dart';
 import 'package:pokedex/features/moves_tab/moves_tab_connector.dart';
 import 'package:pokedex/utilities/colors.dart';
+import 'package:pokedex/utilities/constants.dart';
 import 'package:pokedex/utilities/extensions.dart';
 import 'package:pokedex/utilities/string_constants.dart';
 
@@ -63,9 +64,14 @@ class DetailsPage extends StatelessWidget {
                             ],
                           ),
                           Center(
-                            child: Image.network(
-                              specificPokemon?.id.toString().pokemonImage ?? '',
+                            child: CachedNetworkImage(
+                              imageUrl:
+                                  specificPokemon?.id.toString().pokemonImage ??
+                                      '',
                               height: 210,
+                              placeholder: (context, url) => spinKitRipple,
+                              errorWidget: (context, url, error) =>
+                                  const Icon(Icons.error),
                             ),
                           ),
                           SizedBox(height: 10),
