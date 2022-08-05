@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex/api/models/pokemon_evolutions_model.dart';
 import 'package:pokedex/features/evolution_tab/widgets/evolution_column.dart';
+import 'package:pokedex/features/evolution_tab/widgets/evolution_tile.dart';
 
 class EvolutionTab extends StatelessWidget {
   const EvolutionTab({this.evolutions});
@@ -14,20 +15,20 @@ class EvolutionTab extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              EvolutionColumn(
-                firstEvolution: evolutions?.firstEvolution,
-                isNotFirstEvolution: false,
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  EvolutionTile(
+                    name: evolutions?.firstEvolution?.name,
+                    id: evolutions?.firstEvolution?.id,
+                    isNotFirstEvolution: false,
+                  ),
+                ],
               ),
               if (evolutions?.secondEvolutions.isNotEmpty ?? false)
-                EvolutionColumn(
-                  evolutionsList: evolutions?.secondEvolutions,
-                  isNotFirstEvolution: true,
-                ),
+                EvolutionColumn(evolutionsList: evolutions?.secondEvolutions),
               if (evolutions?.thirdEvolutions.isNotEmpty ?? false)
-                EvolutionColumn(
-                  evolutionsList: evolutions?.thirdEvolutions,
-                  isNotFirstEvolution: true,
-                ),
+                EvolutionColumn(evolutionsList: evolutions?.thirdEvolutions),
             ],
           )
         : Center(child: CircularProgressIndicator());
