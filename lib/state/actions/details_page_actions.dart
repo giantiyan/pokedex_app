@@ -43,6 +43,20 @@ class GetPokemonBaseStatsAction extends ReduxAction<AppState> {
   }
 }
 
+/// Get pokemon evolution details and save it to the state
+class GetPokemonEvolutionChainAction extends ReduxAction<AppState> {
+  GetPokemonEvolutionChainAction(this.pokemonId);
+
+  final int? pokemonId;
+
+  @override
+  Future<AppState?> reduce() async {
+    final evolutions =
+        await PokemonHandler.getPokemonEvolutionChain(pokemonId!);
+    return state.copyWith(evolutions: evolutions);
+  }
+}
+
 /// Get pokemon moves details and save it to the state
 class GetPokemonMovesAction extends ReduxAction<AppState> {
   GetPokemonMovesAction(this.pokemonURL);
