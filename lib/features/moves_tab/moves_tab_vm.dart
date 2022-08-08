@@ -25,8 +25,8 @@ class MovesTabVmFactory extends VmFactory<AppState, MovesTabConnector> {
 
 class MovesTabVm extends Vm {
   MovesTabVm({
-    this.moves,
     required this.pageState,
+    this.moves,
   }) : super(equals: [moves, pageState]);
 
   final PokemonMovesModel? moves;

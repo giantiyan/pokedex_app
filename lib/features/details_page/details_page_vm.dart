@@ -27,9 +27,9 @@ class DetailsPageVmFactory extends VmFactory<AppState, DetailsPageConnector> {
 
 class DetailsPageVm extends Vm {
   DetailsPageVm({
+    required this.pageState,
     this.specificPokemon,
     this.types,
-    required this.pageState,
   }) : super(equals: [specificPokemon, types, pageState]);
 
   final PokemonModel? specificPokemon;

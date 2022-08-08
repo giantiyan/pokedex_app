@@ -25,8 +25,8 @@ class HomePageVmFactory extends VmFactory<AppState, HomePageConnector> {
 
 class HomePageVm extends Vm {
   HomePageVm({
-    this.pokemon,
     required this.pageState,
+    this.pokemon,
   }) : super(equals: [pokemon, pageState]);
 
   final List<PokemonModel>? pokemon;

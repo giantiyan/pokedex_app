@@ -25,8 +25,8 @@ class EvolutionTabVmFactory extends VmFactory<AppState, EvolutionTabConnector> {
 
 class EvolutionTabVm extends Vm {
   EvolutionTabVm({
-    this.evolutions,
     required this.pageState,
+    this.evolutions,
   }) : super(equals: [evolutions, pageState]);
 
   final PokemonEvolutionsModel? evolutions;

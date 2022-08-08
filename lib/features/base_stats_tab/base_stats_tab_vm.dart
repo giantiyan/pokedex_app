@@ -25,8 +25,8 @@ class BaseStatsTabVmFactory extends VmFactory<AppState, BaseStatsTabConnector> {
 
 class BaseStatsTabVm extends Vm {
   BaseStatsTabVm({
-    this.baseStats,
     required this.pageState,
+    this.baseStats,
   }) : super(equals: [baseStats, pageState]);
 
   final PokemonBaseStatsModel? baseStats;

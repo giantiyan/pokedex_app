@@ -25,8 +25,8 @@ class AboutTabVmFactory extends VmFactory<AppState, AboutTabConnector> {
 
 class AboutTabVm extends Vm {
   AboutTabVm({
-    this.about,
     required this.pageState,
+    this.about,
   }) : super(equals: [about, pageState]);
 
   final PokemonAboutModel? about;
