@@ -11,8 +11,14 @@ class HomePageConnector extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, HomePageVm>(
-        vm: () => HomePageVmFactory(),
-        onInit: (store) async => store.dispatch(GetPokemonAction()),
-        builder: (context, vm) => HomePage(pokemon: vm.pokemon));
+      vm: () => HomePageVmFactory(),
+      onInit: (store) async => store.dispatch(GetPokemonAction()),
+      builder: (context, vm) => vm.pageState.when(
+        (pokemon) => HomePage(pokemon: pokemon),
+        loading: () =>
+            Scaffold(body: Center(child: CircularProgressIndicator())),
+        error: (error) => Center(child: Text(error!)),
+      ),
+    );
   }
 }

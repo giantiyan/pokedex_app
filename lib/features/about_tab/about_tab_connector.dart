@@ -4,6 +4,7 @@ import 'package:pokedex/features/about_tab/about_tab.dart';
 import 'package:pokedex/features/about_tab/about_tab_vm.dart';
 import 'package:pokedex/state/actions/details_page_actions.dart';
 import 'package:pokedex/state/app_state.dart';
+import 'package:pokedex/utilities/constants.dart';
 
 class AboutTabConnector extends StatelessWidget {
   const AboutTabConnector(this.pokemonURL);
@@ -15,7 +16,11 @@ class AboutTabConnector extends StatelessWidget {
     return StoreConnector<AppState, AboutTabVm>(
       vm: () => AboutTabVmFactory(),
       onInit: (vm) => vm.dispatch(GetPokemonAboutAction(pokemonURL)),
-      builder: (context, vm) => AboutTab(vm.about),
+      builder: (context, vm) => vm.pageState.when(
+        (about) => AboutTab(about),
+        loading: () => spinKitDualRing,
+        error: (error) => Center(child: Text(error!)),
+      ),
     );
   }
 }

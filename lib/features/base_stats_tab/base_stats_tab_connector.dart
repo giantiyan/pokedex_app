@@ -4,6 +4,7 @@ import 'package:pokedex/features/base_stats_tab/base_stats_tab.dart';
 import 'package:pokedex/features/base_stats_tab/base_stats_tab_vm.dart';
 import 'package:pokedex/state/actions/details_page_actions.dart';
 import 'package:pokedex/state/app_state.dart';
+import 'package:pokedex/utilities/constants.dart';
 
 class BaseStatsTabConnector extends StatelessWidget {
   const BaseStatsTabConnector({
@@ -19,9 +20,13 @@ class BaseStatsTabConnector extends StatelessWidget {
     return StoreConnector<AppState, BaseStatsTabVm>(
       vm: () => BaseStatsTabVmFactory(),
       onInit: (vm) => vm.dispatch(GetPokemonBaseStatsAction(pokemonURL)),
-      builder: (context, vm) => BaseStatsTab(
-        baseStats: vm.baseStats,
-        pokemonType: pokemonType,
+      builder: (context, vm) => vm.pageState.when(
+        (baseStats) => BaseStatsTab(
+          baseStats: baseStats,
+          pokemonType: pokemonType,
+        ),
+        loading: () => spinKitDualRing,
+        error: (error) => Center(child: Text(error!)),
       ),
     );
   }

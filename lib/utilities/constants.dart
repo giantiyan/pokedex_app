@@ -19,3 +19,8 @@ const spinKitRipple = SpinKitRipple(
   color: red,
   size: 50.0,
 );
+
+const spinKitDualRing = SpinKitDualRing(
+  color: red,
+  size: 50.0,
+);
