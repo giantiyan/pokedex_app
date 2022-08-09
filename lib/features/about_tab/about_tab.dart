@@ -28,11 +28,7 @@ class AboutTab extends StatelessWidget {
                   ),
                   AboutInformation(
                     label: abilities,
-                    value: about?.abilities
-                        ?.toString()
-                        .replaceBracket
-                        .replaceDash
-                        .toTitleCase,
+                    value: about?.abilities?.capitalizedAbilities
                   ),
                   AboutInformation(
                     label: baseExperience,

@@ -10,6 +10,8 @@ const pokemonSpeciesURL = 'https://pokeapi.co/api/v2/pokemon-species';
 const pokemonImage =
     'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/';
 
+const pokemonTypeURL = 'https://pokeapi.co/api/v2/type';
+
 const spinKitHourGlass = SpinKitHourGlass(
   color: red,
   size: 50.0,
@@ -24,3 +26,24 @@ const spinKitDualRing = SpinKitDualRing(
   color: red,
   size: 50.0,
 );
+
+var typesList = [
+  'fire',
+  'grass',
+  'water',
+  'normal',
+  'flying',
+  'bug',
+  'poison',
+  'ground',
+  'electric',
+  'fighting',
+  'psychic',
+  'rock',
+  'ice',
+  'ghost',
+  'dragon',
+  'dark',
+  'steel',
+  'fairy',
+];

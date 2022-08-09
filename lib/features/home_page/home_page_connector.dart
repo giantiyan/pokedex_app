@@ -14,7 +14,12 @@ class HomePageConnector extends StatelessWidget {
       vm: () => HomePageVmFactory(),
       onInit: (store) async => store.dispatch(GetPokemonAction()),
       builder: (context, vm) => vm.pageState.when(
-        (pokemon) => HomePage(pokemon: pokemon),
+        (pokemon) => HomePage(
+          pokemon: pokemon,
+          onFilter: vm.onFilter,
+          onCancel: vm.onCancel,
+          isVisible: vm.isVisible,
+        ),
         loading: () =>
             Scaffold(body: Center(child: CircularProgressIndicator())),
         error: (error) => Center(child: Text(error!)),
