@@ -11,7 +11,7 @@ class FilterModal extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Container(
-        padding: EdgeInsets.all(12),
+        padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.vertical(top: Radius.circular(25)),
