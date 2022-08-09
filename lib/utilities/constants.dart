@@ -27,7 +27,7 @@ const spinKitDualRing = SpinKitDualRing(
   size: 50.0,
 );
 
-var typesList = [
+const typesList = [
   'fire',
   'grass',
   'water',

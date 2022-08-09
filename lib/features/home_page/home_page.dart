@@ -83,37 +83,24 @@ class HomePage extends StatelessWidget {
       floatingActionButton: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          Visibility(
-            visible: isVisible ?? false,
-            child: FloatingActionButton(
-              heroTag: null,
-              onPressed: () {
-                onCancel();
-              },
-              backgroundColor: red,
-              child: const Icon(Icons.cancel),
-            ),
+          if (isVisible == true)(
+              FloatingActionButton(
+                heroTag: 'cancel',
+                onPressed: onCancel,
+                backgroundColor: red,
+                child: const Icon(Icons.cancel),
+              )
           ),
           SizedBox(width: 8),
           FloatingActionButton(
-            heroTag: null,
-            onPressed: () {
-              showModalBottomSheet(
+            heroTag: 'filter',
+            onPressed: () => showModalBottomSheet(
                 backgroundColor: Colors.transparent,
                 context: context,
                 isScrollControlled: true,
-                builder: (context) {
-                  return SingleChildScrollView(
-                    child: Container(
-                      padding: EdgeInsets.only(
-                          bottom: MediaQuery.of(context).viewInsets.bottom),
-                      child: FilterModal(onFilter: onFilter),
-                    ),
-                  );
-                },
-              );
-            },
-            backgroundColor: Colors.orangeAccent,
+                builder: (context) => FilterModal(onFilter: onFilter),
+              ),
+            backgroundColor: orangeAccent,
             child: const Icon(Icons.filter_list),
           ),
         ],

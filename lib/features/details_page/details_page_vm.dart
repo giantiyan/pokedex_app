@@ -34,5 +34,5 @@ class DetailsPageVm extends Vm {
 
   final PokemonModel? specificPokemon;
   final List<PokemonTypeModel>? types;
-  late UnionPageState<List<PokemonTypeModel>?> pageState;
+  final UnionPageState<List<PokemonTypeModel>?> pageState;
 }

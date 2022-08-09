@@ -9,30 +9,31 @@ class FilterModal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Container(
-        child: Container(
-            padding: EdgeInsets.all(12),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.vertical(
-                top: Radius.circular(25),
+      child: Container(
+        padding: EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.vertical(top: Radius.circular(25)),
+        ),
+        child: Wrap(
+          alignment: WrapAlignment.center,
+          children: [
+            ...typesList.map(
+              (type) => GestureDetector(
+                onTap: () {
+                  onFilter(type);
+                  Navigator.pop(context);
+                },
+                child: Type(
+                  typeName: type,
+                  pokemonType: type,
+                ),
               ),
             ),
-            child: Wrap(
-              alignment: WrapAlignment.center,
-              children: <Widget>[
-                ...typesList.map((type) => GestureDetector(
-                      onTap: () {
-                        onFilter(type);
-                        Navigator.pop(context);
-                      },
-                      child: Type(
-                        typeName: type,
-                        pokemonType: type,
-                      ),
-                    ))
-              ],
-            )));
+          ],
+        ),
+      ),
+    );
   }
 }

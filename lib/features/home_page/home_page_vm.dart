@@ -44,5 +44,5 @@ class HomePageVm extends Vm {
   final VoidCallback onCancel;
   final List<PokemonModel>? pokemon;
   final bool? isVisible;
-  late UnionPageState<List<PokemonModel>?> pageState;
+  final UnionPageState<List<PokemonModel>?> pageState;
 }

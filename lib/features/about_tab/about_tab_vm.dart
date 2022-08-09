@@ -30,5 +30,5 @@ class AboutTabVm extends Vm {
   }) : super(equals: [about, pageState]);
 
   final PokemonAboutModel? about;
-  late UnionPageState<PokemonAboutModel?> pageState;
+  final UnionPageState<PokemonAboutModel?> pageState;
 }
