@@ -15,7 +15,7 @@ class GetPokemonAction extends LoadingAction {
   @override
   void before() {
     dispatch(ChangeFilterCancelVisibilityAction(isVisible: false));
-    super.before;
+    super.before();
   }
 
   @override
@@ -41,7 +41,7 @@ class FilterPokemonAction extends LoadingAction {
   @override
   void after() {
     dispatch(ChangeFilterCancelVisibilityAction(isVisible: true));
-    super.after;
+    super.after();
   }
 }
 

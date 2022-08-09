@@ -14,6 +14,10 @@ class Type extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 8,
+        vertical: 6,
+      ),
       decoration: BoxDecoration(
         color: pokemonType != null
             ? pokemonType.toString().pokemonColor
@@ -24,15 +28,9 @@ class Type extends StatelessWidget {
         bottom: 8,
         right: 4,
       ),
-      child: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: 8,
-          vertical: 6,
-        ),
-        child: Text(
-          typeName?.toTitleCase ?? '',
-          style: TextStyle(color: white),
-        ),
+      child: Text(
+        typeName?.toTitleCase ?? '',
+        style: TextStyle(color: white),
       ),
     );
   }
