@@ -30,5 +30,5 @@ class EvolutionTabVm extends Vm {
   }) : super(equals: [evolutions, pageState]);
 
   final PokemonEvolutionsModel? evolutions;
-  late UnionPageState<PokemonEvolutionsModel?> pageState;
+  final UnionPageState<PokemonEvolutionsModel?> pageState;
 }

@@ -35,6 +35,31 @@ class PokemonHandler {
     }
   }
 
+  static Future<List<PokemonModel>?> filterPokemon(String type) async {
+    var response = http.Response('', 100);
+
+    try {
+      response = await http.get(Uri.tryParse('$pokemonTypeURL/$type') ?? Uri());
+    } catch (e) {
+      print(e);
+    }
+
+    if (response.statusCode == 200) {
+      final List results = jsonDecode(response.body)['pokemon'];
+
+      final pokemonResults = results
+          .map((pokemon) => PokemonModel(
+        name: pokemon['pokemon']['name'],
+        url: pokemon['pokemon']['url'],
+        id: int.parse(pokemon['pokemon']['url'].toString().split('/')[6]),
+      ))
+          .toList();
+      return pokemonResults;
+    } else {
+      return null;
+    }
+  }
+
   static Future<List<PokemonTypeModel>?> getPokemonType(String url) async {
     var response = http.Response('', 100);
 

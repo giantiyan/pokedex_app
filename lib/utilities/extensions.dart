@@ -131,6 +131,8 @@ extension StringExt on String {
 
   String get replaceDash => replaceAll('-', ' ');
 
+  String get removeParenthesis => replaceAll(')', '').replaceAll('(', '');
+
   String get toHeight {
     var convert = double.parse(this) / 10;
     return convert.toString() + ' m';
@@ -157,18 +159,8 @@ extension StringExt on String {
       return this.shortcut;
   }
 
-  Color get baseStatsColor {
-    var color;
-    var value = double.parse(this) / 200;
+}
 
-    if (value < 0.25) {
-      color = kFire;
-    } else if (value < 0.5) {
-      color = kElectric;
-    } else {
-      color = kGrass;
-    }
-
-    return color;
-  }
+extension ListStringExt on List<String> {
+  String get capitalizedAbilities => map((ability) => ability).toString().removeParenthesis.replaceDash.toTitleCase;
 }

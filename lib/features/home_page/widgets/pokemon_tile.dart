@@ -10,7 +10,10 @@ import 'package:pokedex/utilities/constants.dart';
 import 'package:pokedex/utilities/extensions.dart';
 
 class PokemonTile extends StatefulWidget {
-  const PokemonTile({this.pokemon});
+  const PokemonTile({
+    this.pokemon,
+    Key? key,
+  }) : super(key: key);
 
   final PokemonModel? pokemon;
 
@@ -48,7 +51,6 @@ class _PokemonTileState extends State<PokemonTile> {
           BoxShadow(
             color: Colors.black26.withOpacity(0.2),
             offset: const Offset(0.0, 0.0),
-            blurRadius: 5.0,
             spreadRadius: 0.10,
           )
         ],

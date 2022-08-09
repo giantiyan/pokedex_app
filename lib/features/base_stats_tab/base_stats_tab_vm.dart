@@ -30,5 +30,5 @@ class BaseStatsTabVm extends Vm {
   }) : super(equals: [baseStats, pageState]);
 
   final PokemonBaseStatsModel? baseStats;
-  late UnionPageState<PokemonBaseStatsModel?> pageState;
+  final UnionPageState<PokemonBaseStatsModel?> pageState;
 }

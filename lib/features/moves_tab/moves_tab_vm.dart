@@ -30,5 +30,5 @@ class MovesTabVm extends Vm {
   }) : super(equals: [moves, pageState]);
 
   final PokemonMovesModel? moves;
-  late UnionPageState<PokemonMovesModel?> pageState;
+  final UnionPageState<PokemonMovesModel?> pageState;
 }

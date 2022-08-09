@@ -13,29 +13,25 @@ class Type extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          padding: EdgeInsets.symmetric(
-            horizontal: 8,
-            vertical: 6,
-          ),
-          margin: EdgeInsets.only(
-            bottom: 8,
-            right: 4,
-          ),
-          decoration: BoxDecoration(
-            color: pokemonType != null
-                ? pokemonType.toString().pokemonColor
-                : white.withOpacity(0.25),
-            borderRadius: BorderRadius.circular(25),
-          ),
-          child: Text(
-            typeName?.toTitleCase ?? '',
-            style: TextStyle(color: white),
-          ),
-        ),
-      ],
+    return Container(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 8,
+        vertical: 6,
+      ),
+      decoration: BoxDecoration(
+        color: pokemonType != null
+            ? pokemonType.toString().pokemonColor
+            : white.withOpacity(0.25),
+        borderRadius: BorderRadius.circular(25),
+      ),
+      margin: EdgeInsets.only(
+        bottom: 8,
+        right: 4,
+      ),
+      child: Text(
+        typeName?.toTitleCase ?? '',
+        style: TextStyle(color: white),
+      ),
     );
   }
 }
