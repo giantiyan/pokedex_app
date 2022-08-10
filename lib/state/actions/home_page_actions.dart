@@ -16,7 +16,7 @@ class GetPokemonAction extends LoadingAction {
 
   @override
   void before() {
-    dispatch(ChangeFilterCancelVisibilityAction(isVisible: false));
+    dispatch(ChangeFilterCancelVisibilityAction(isFilterButtonVisible: false));
     super.before();
   }
 
@@ -43,6 +43,8 @@ class SearchPokemonAction extends ReduxAction<AppState> {
   AppState reduce() => state.copyWith(searchedPokemon: searchedPokemon);
 }
 
+
+/// Clear searched pokemons and save it to the state
 class ClearSearchPokemonAction extends ReduxAction<AppState> {
 
   @override
@@ -70,17 +72,17 @@ class FilterPokemonAction extends LoadingAction {
 
   @override
   void after() {
-    dispatch(ChangeFilterCancelVisibilityAction(isVisible: true));
+    dispatch(ChangeFilterCancelVisibilityAction(isFilterButtonVisible: true));
     super.after();
   }
 }
 
 /// Change visibility of cancel button and save it to the state
 class ChangeFilterCancelVisibilityAction extends ReduxAction<AppState> {
-  ChangeFilterCancelVisibilityAction({this.isVisible});
+  ChangeFilterCancelVisibilityAction({this.isFilterButtonVisible});
 
-  final bool? isVisible;
+  final bool? isFilterButtonVisible;
 
   @override
-  AppState reduce() => state.copyWith(isVisible: isVisible);
+  AppState reduce() => state.copyWith(isFilterButtonVisible: isFilterButtonVisible);
 }

@@ -1,6 +1,7 @@
 import 'package:dartx/dartx.dart';
 import 'package:flutter/material.dart';
 import 'package:pokedex/utilities/colors.dart';
+import 'package:pokedex/utilities/constants.dart';
 
 class SearchBar extends StatefulWidget {
   const SearchBar({required this.onSearch});
@@ -13,13 +14,12 @@ class SearchBar extends StatefulWidget {
 
 class _SearchBarState extends State<SearchBar> {
   final _controller = TextEditingController();
-  bool? isIconVisible;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 46,
-      width: 220,
+      height: searchBarHeight,
+      width: searchBarWidth,
       child: TextField(
         textAlignVertical: TextAlignVertical.top,
         controller: _controller,
@@ -28,9 +28,7 @@ class _SearchBarState extends State<SearchBar> {
           fillColor: white,
           filled: true,
           prefixIcon: Icon(Icons.search),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(25.0),
-          ),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(25.0)),
           suffixIcon: _controller.text.isNotBlank
               ? IconButton(
                   icon: Icon(Icons.clear),

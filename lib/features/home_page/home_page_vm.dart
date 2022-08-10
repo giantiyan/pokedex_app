@@ -12,7 +12,7 @@ class HomePageVmFactory extends VmFactory<AppState, HomePageConnector> {
         onSearch: _onSearchPokemons,
         onFilter: _onFilterPokemons,
         onCancel: _onCancelFilter,
-        isVisible: state.isVisible,
+        isFilterButtonVisible: state.isFilterButtonVisible,
         pageState: _getPageState(),
       );
 
@@ -21,6 +21,8 @@ class HomePageVmFactory extends VmFactory<AppState, HomePageConnector> {
       return const UnionPageState.loading();
     } else if (state.searchedPokemon?.isNotEmpty == true) {
       return UnionPageState(state.searchedPokemon);
+    } else if (state.searchedPokemon?.isEmpty == true) {
+      return UnionPageState([]);
     } else if (state.pokemon?.isNotEmpty == true) {
       return UnionPageState(state.pokemon);
     } else {
@@ -52,12 +54,12 @@ class HomePageVm extends Vm {
     required this.onFilter,
     required this.onCancel,
     required this.pageState,
-    this.isVisible,
+    this.isFilterButtonVisible,
   }) : super(equals: [pageState]);
 
   final Function(String? query) onSearch;
   final Function(String? typeName) onFilter;
   final VoidCallback onCancel;
-  final bool? isVisible;
+  final bool? isFilterButtonVisible;
   final UnionPageState<List<PokemonModel>?> pageState;
 }

@@ -12,18 +12,17 @@ class HomePage extends StatelessWidget {
     required this.onFilter,
     required this.onCancel,
     this.pokemon,
-    this.isVisible,
+    this.isFilterButtonVisible,
   });
 
   final Function(String? query) onSearch;
   final Function(String? typeName) onFilter;
   final VoidCallback onCancel;
   final List<PokemonModel>? pokemon;
-  final bool? isVisible;
+  final bool? isFilterButtonVisible;
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         title: Row(
@@ -56,16 +55,18 @@ class HomePage extends StatelessWidget {
       floatingActionButton: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          if (isVisible == true)
-            (FloatingActionButton(
+          if (isFilterButtonVisible == true)
+            FloatingActionButton(
               heroTag: 'cancel',
+              tooltip: 'Cancel',
               onPressed: onCancel,
               backgroundColor: red,
               child: const Icon(Icons.cancel),
-            )),
+            ),
           SizedBox(width: 8),
           FloatingActionButton(
             heroTag: 'filter',
+            tooltip: 'Filter',
             onPressed: () => showModalBottomSheet(
               backgroundColor: Colors.transparent,
               context: context,

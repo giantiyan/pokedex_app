@@ -19,7 +19,7 @@ class HomePageConnector extends StatelessWidget {
           onFilter: vm.onFilter,
           onCancel: vm.onCancel,
           pokemon: pokemon,
-          isVisible: vm.isVisible,
+          isFilterButtonVisible: vm.isFilterButtonVisible,
         ),
         loading: () =>
             Scaffold(body: Center(child: CircularProgressIndicator())),
