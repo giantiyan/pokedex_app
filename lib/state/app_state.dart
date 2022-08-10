@@ -22,6 +22,7 @@ class AppState with _$AppState {
     @JsonKey(name: 'evolutions') PokemonEvolutionsModel? evolutions,
     @JsonKey(name: 'moves') PokemonMovesModel? moves,
     @Default(false) @JsonKey(name: 'isVisible') bool? isVisible,
+    @JsonKey(name: 'searchedPokemon') List<PokemonModel>? searchedPokemon,
     @Default(Wait.empty) @JsonKey(name: 'wait', ignore: true) Wait wait,
   }) = _AppState;
 

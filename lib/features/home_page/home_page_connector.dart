@@ -15,9 +15,10 @@ class HomePageConnector extends StatelessWidget {
       onInit: (store) async => store.dispatch(GetPokemonAction()),
       builder: (context, vm) => vm.pageState.when(
         (pokemon) => HomePage(
-          pokemon: pokemon,
+          onSearch: vm.onSearch,
           onFilter: vm.onFilter,
           onCancel: vm.onCancel,
+          pokemon: pokemon,
           isVisible: vm.isVisible,
         ),
         loading: () =>
