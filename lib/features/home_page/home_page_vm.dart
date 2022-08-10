@@ -9,21 +9,38 @@ import 'package:pokedex/state/app_state.dart';
 class HomePageVmFactory extends VmFactory<AppState, HomePageConnector> {
   @override
   Vm fromStore() => HomePageVm(
+        onSearch: _onSearchPokemons,
         onFilter: _onFilterPokemons,
         onCancel: _onCancelFilter,
-        pokemon: state.pokemon,
-        isVisible: state.isVisible,
+        isFilterButtonVisible: state.isFilterButtonVisible,
         pageState: _getPageState(),
       );
 
   UnionPageState<List<PokemonModel>?> _getPageState() {
     if (state.wait.isWaitingFor(getPokemonListKey)) {
       return const UnionPageState.loading();
+    } else if (state.searchedPokemon?.isNotEmpty == true) {
+      return UnionPageState(state.searchedPokemon);
+    } else if (state.searchedPokemon?.isEmpty == true) {
+      return UnionPageState([]);
     } else if (state.pokemon?.isNotEmpty == true) {
       return UnionPageState(state.pokemon);
     } else {
       return const UnionPageState.error('Home Page Error Message');
     }
+  }
+
+  void _onSearchPokemons(query) {
+    var searchedPokemon = state.pokemon
+        ?.where((pokemon) =>
+            pokemon.name!
+                .toString()
+                .toLowerCase()
+                .contains(query.toLowerCase()) ||
+            pokemon.id!.toString().toLowerCase().contains(query.toLowerCase()))
+        .toList();
+
+    dispatch(SearchPokemonAction(searchedPokemon));
   }
 
   void _onFilterPokemons(type) => dispatch(FilterPokemonAction(type));
@@ -33,16 +50,16 @@ class HomePageVmFactory extends VmFactory<AppState, HomePageConnector> {
 
 class HomePageVm extends Vm {
   HomePageVm({
+    required this.onSearch,
     required this.onFilter,
     required this.onCancel,
     required this.pageState,
-    this.pokemon,
-    this.isVisible,
-  }) : super(equals: [pokemon, pageState]);
+    this.isFilterButtonVisible,
+  }) : super(equals: [pageState]);
 
+  final Function(String? query) onSearch;
   final Function(String? typeName) onFilter;
   final VoidCallback onCancel;
-  final List<PokemonModel>? pokemon;
-  final bool? isVisible;
+  final bool? isFilterButtonVisible;
   final UnionPageState<List<PokemonModel>?> pageState;
 }

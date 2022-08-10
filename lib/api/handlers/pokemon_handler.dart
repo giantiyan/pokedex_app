@@ -29,6 +29,7 @@ class PokemonHandler {
                 id: index + 1,
               ))
           .toList();
+
       return pokemonResults;
     } else {
       return null;
@@ -49,10 +50,11 @@ class PokemonHandler {
 
       final pokemonResults = results
           .map((pokemon) => PokemonModel(
-        name: pokemon['pokemon']['name'],
-        url: pokemon['pokemon']['url'],
-        id: int.parse(pokemon['pokemon']['url'].toString().split('/')[6]),
-      ))
+                name: pokemon['pokemon']['name'],
+                url: pokemon['pokemon']['url'],
+                id: int.parse(
+                    pokemon['pokemon']['url'].toString().split('/')[6]),
+              ))
           .toList();
       return pokemonResults;
     } else {

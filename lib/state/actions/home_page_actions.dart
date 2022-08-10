@@ -2,10 +2,12 @@ import 'dart:async';
 
 import 'package:async_redux/async_redux.dart';
 import 'package:pokedex/api/handlers/pokemon_handler.dart';
+import 'package:pokedex/api/models/pokemon_model.dart';
 import 'package:pokedex/state/actions/actions.dart';
 import 'package:pokedex/state/app_state.dart';
 
 const getPokemonListKey = 'get-pokemon-list-key';
+const searchPokemonListKey = 'search-pokemon-list-key';
 const filterPokemonListKey = 'filter-pokemon-list-key';
 
 /// Get pokemons and save it to the state
@@ -14,7 +16,7 @@ class GetPokemonAction extends LoadingAction {
 
   @override
   void before() {
-    dispatch(ChangeFilterCancelVisibilityAction(isVisible: false));
+    dispatch(ChangeFilterCancelVisibilityAction(isFilterButtonVisible: false));
     super.before();
   }
 
@@ -23,6 +25,30 @@ class GetPokemonAction extends LoadingAction {
     final pokemon = await PokemonHandler.getPokemon();
     return state.copyWith(pokemon: pokemon);
   }
+
+  @override
+  void after() {
+    dispatch(ClearSearchPokemonAction());
+    super.after();
+  }
+}
+
+/// Search pokemons and save it to the state
+class SearchPokemonAction extends ReduxAction<AppState> {
+  SearchPokemonAction(this.searchedPokemon);
+
+  final List<PokemonModel>? searchedPokemon;
+
+  @override
+  AppState reduce() => state.copyWith(searchedPokemon: searchedPokemon);
+}
+
+
+/// Clear searched pokemons and save it to the state
+class ClearSearchPokemonAction extends ReduxAction<AppState> {
+
+  @override
+  AppState reduce() => state.copyWith(searchedPokemon: null);
 }
 
 /// Filter pokemons and save it to the state
@@ -33,6 +59,12 @@ class FilterPokemonAction extends LoadingAction {
   final String? pokemonType;
 
   @override
+  void before() {
+    dispatch(ClearSearchPokemonAction());
+    super.before();
+  }
+
+  @override
   Future<AppState> reduce() async {
     final pokemon = await PokemonHandler.filterPokemon(pokemonType!);
     return state.copyWith(pokemon: pokemon);
@@ -40,17 +72,17 @@ class FilterPokemonAction extends LoadingAction {
 
   @override
   void after() {
-    dispatch(ChangeFilterCancelVisibilityAction(isVisible: true));
+    dispatch(ChangeFilterCancelVisibilityAction(isFilterButtonVisible: true));
     super.after();
   }
 }
 
 /// Change visibility of cancel button and save it to the state
 class ChangeFilterCancelVisibilityAction extends ReduxAction<AppState> {
-  ChangeFilterCancelVisibilityAction({this.isVisible});
+  ChangeFilterCancelVisibilityAction({this.isFilterButtonVisible});
 
-  final bool? isVisible;
+  final bool? isFilterButtonVisible;
 
   @override
-  AppState reduce() => state.copyWith(isVisible: isVisible);
+  AppState reduce() => state.copyWith(isFilterButtonVisible: isFilterButtonVisible);
 }

@@ -47,3 +47,8 @@ const typesList = [
   'steel',
   'fairy',
 ];
+
+const searchBarHeight = 46.0;
+
+const searchBarWidth = 220.0;
+
