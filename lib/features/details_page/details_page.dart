@@ -49,7 +49,7 @@ class DetailsPage extends StatelessWidget {
                           Align(
                             alignment: Alignment.centerRight,
                             child: Text(
-                              (specificPokemon?.id).toString().formatID,
+                              (specificPokemon?.url?.pokemonId).toString().formatID,
                               style: const TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
@@ -66,7 +66,7 @@ class DetailsPage extends StatelessWidget {
                           Center(
                             child: CachedNetworkImage(
                               imageUrl:
-                                  specificPokemon?.id.toString().pokemonImage ??
+                                  specificPokemon?.url?.pokemonId.toString().pokemonImage ??
                                       '',
                               height: 210,
                               placeholder: (context, url) => spinKitRipple,
@@ -117,7 +117,7 @@ class DetailsPage extends StatelessWidget {
                                     pokemonURL: specificPokemon?.url,
                                     pokemonType: types?.first.name,
                                   ),
-                                  EvolutionTabConnector(specificPokemon?.id),
+                                  EvolutionTabConnector(specificPokemon?.url?.pokemonId),
                                   MovesTabConnector(
                                     pokemonURL: specificPokemon?.url,
                                     pokemonType: types?.first.name,

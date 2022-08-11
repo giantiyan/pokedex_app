@@ -17,6 +17,8 @@ extension StringExt on String {
     return 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/$this.png';
   }
 
+  int get pokemonId => int.parse(Uri.parse(this).pathSegments[3]);
+
   Color get pokemonColor {
     var color = white;
 
@@ -144,20 +146,6 @@ extension StringExt on String {
   }
 
   String get toBaseExp => '$this xp';
-
-  String get shortcut => replaceAll('special', 'Sp')
-      .replaceAll('Special', 'Sp')
-      .replaceAll('attack', 'Atk')
-      .replaceAll('defense', 'Def');
-
-  String get baseStatLabel {
-    if (this == 'hp')
-      return this.toUpperCase();
-    else if (this == 'attack' || this == 'defense' || this == 'speed')
-      return this.capitalize;
-    else
-      return this.shortcut;
-  }
 
 }
 

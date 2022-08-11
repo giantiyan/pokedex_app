@@ -1,5 +1,5 @@
 import 'package:async_redux/async_redux.dart';
-import 'package:pokedex/api/models/pokemon_moves_model.dart';
+import 'package:pokedex/api/models/pokemon_move_model.dart';
 import 'package:pokedex/features/moves_tab/moves_tab_connector.dart';
 import 'package:pokedex/models/union_page_state.dart';
 import 'package:pokedex/state/actions/details_page_actions.dart';
@@ -12,7 +12,7 @@ class MovesTabVmFactory extends VmFactory<AppState, MovesTabConnector> {
         pageState: _getPageState(),
       );
 
-  UnionPageState<PokemonMovesModel?> _getPageState() {
+  UnionPageState<List<PokemonMoveModel>?> _getPageState() {
     if (state.wait.isWaitingFor(getPokemonMovesKey)) {
       return const UnionPageState.loading();
     } else if (state.moves != null) {
@@ -29,6 +29,6 @@ class MovesTabVm extends Vm {
     this.moves,
   }) : super(equals: [moves, pageState]);
 
-  final PokemonMovesModel? moves;
-  final UnionPageState<PokemonMovesModel?> pageState;
+  final List<PokemonMoveModel>? moves;
+  final UnionPageState<List<PokemonMoveModel>?> pageState;
 }

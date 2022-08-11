@@ -27,27 +27,6 @@ const spinKitDualRing = SpinKitDualRing(
   size: 50.0,
 );
 
-const typesList = [
-  'fire',
-  'grass',
-  'water',
-  'normal',
-  'flying',
-  'bug',
-  'poison',
-  'ground',
-  'electric',
-  'fighting',
-  'psychic',
-  'rock',
-  'ice',
-  'ghost',
-  'dragon',
-  'dark',
-  'steel',
-  'fairy',
-];
-
 const searchBarHeight = 46.0;
 
 const searchBarWidth = 220.0;

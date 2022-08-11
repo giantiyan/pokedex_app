@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pokedex/features/home_page/widgets/type.dart';
-import 'package:pokedex/utilities/constants.dart';
+import 'package:pokedex/utilities/string_constants.dart';
 
 class FilterModal extends StatelessWidget {
   const FilterModal({required this.onFilter});

@@ -46,7 +46,7 @@ class GetPokemonBaseStatsAction extends LoadingAction {
   @override
   Future<AppState?> reduce() async {
     final baseStats = await PokemonHandler.getPokemonBaseStats(pokemonURL!);
-    return state.copyWith(base_stats: baseStats);
+    return state.copyWith(baseStats: baseStats);
   }
 }
 

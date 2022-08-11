@@ -96,7 +96,7 @@ class _PokemonTileState extends State<PokemonTile> {
                             ),
                             Flexible(
                               child: CachedNetworkImage(
-                                imageUrl: widget.pokemon?.id
+                                imageUrl: widget.pokemon?.url?.pokemonId
                                         .toString()
                                         .pokemonImage ??
                                     '',

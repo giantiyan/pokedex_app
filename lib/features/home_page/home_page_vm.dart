@@ -5,6 +5,7 @@ import 'package:pokedex/features/home_page/home_page_connector.dart';
 import 'package:pokedex/models/union_page_state.dart';
 import 'package:pokedex/state/actions/home_page_actions.dart';
 import 'package:pokedex/state/app_state.dart';
+import 'package:pokedex/utilities/extensions.dart';
 
 class HomePageVmFactory extends VmFactory<AppState, HomePageConnector> {
   @override
@@ -37,7 +38,7 @@ class HomePageVmFactory extends VmFactory<AppState, HomePageConnector> {
                 .toString()
                 .toLowerCase()
                 .contains(query.toLowerCase()) ||
-            pokemon.id!.toString().toLowerCase().contains(query.toLowerCase()))
+            pokemon.url.toString().pokemonId.toString().toLowerCase().contains(query.toLowerCase()))
         .toList();
 
     dispatch(SearchPokemonAction(searchedPokemon));
