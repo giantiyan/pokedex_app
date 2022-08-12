@@ -38,7 +38,10 @@ class HomePageVmFactory extends VmFactory<AppState, HomePageConnector> {
                 .toString()
                 .toLowerCase()
                 .contains(query.toLowerCase()) ||
-            pokemon.url.toString().pokemonId.toString().toLowerCase().contains(query.toLowerCase()))
+            pokemon.url!.pokemonId
+                .toString()
+                .toLowerCase()
+                .contains(query.toLowerCase()))
         .toList();
 
     dispatch(SearchPokemonAction(searchedPokemon));

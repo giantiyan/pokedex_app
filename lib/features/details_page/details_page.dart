@@ -49,7 +49,10 @@ class DetailsPage extends StatelessWidget {
                           Align(
                             alignment: Alignment.centerRight,
                             child: Text(
-                              (specificPokemon?.url?.pokemonId).toString().formatID,
+                              specificPokemon?.url?.pokemonId
+                                      .toString()
+                                      .formatID ??
+                                  '',
                               style: const TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
@@ -65,9 +68,10 @@ class DetailsPage extends StatelessWidget {
                           ),
                           Center(
                             child: CachedNetworkImage(
-                              imageUrl:
-                                  specificPokemon?.url?.pokemonId.toString().pokemonImage ??
-                                      '',
+                              imageUrl: specificPokemon?.url?.pokemonId
+                                      .toString()
+                                      .pokemonImage ??
+                                  '',
                               height: 210,
                               placeholder: (context, url) => spinKitRipple,
                               errorWidget: (context, url, error) =>
@@ -117,7 +121,8 @@ class DetailsPage extends StatelessWidget {
                                     pokemonURL: specificPokemon?.url,
                                     pokemonType: types?.first.name,
                                   ),
-                                  EvolutionTabConnector(specificPokemon?.url?.pokemonId),
+                                  EvolutionTabConnector(
+                                      specificPokemon?.url?.pokemonId),
                                   MovesTabConnector(
                                     pokemonURL: specificPokemon?.url,
                                     pokemonType: types?.first.name,
