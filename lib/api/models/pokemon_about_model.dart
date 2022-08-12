@@ -13,6 +13,5 @@ class PokemonAboutModel with _$PokemonAboutModel {
     @JsonKey(name: 'base_experience') int? base_experience,
   }) = _PokemonAboutModel;
 
-  factory PokemonAboutModel.fromJson(Map<String, dynamic> json) =>
-      _$PokemonAboutModelFromJson(json);
+  factory PokemonAboutModel.fromJson(Map<String, dynamic> json) => _$PokemonAboutModelFromJson(json);
 }

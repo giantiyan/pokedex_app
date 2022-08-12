@@ -38,8 +38,7 @@ class GetPokemonAboutAction extends LoadingAction {
 
 /// Get pokemon base stats details and save it to the state
 class GetPokemonBaseStatsAction extends LoadingAction {
-  GetPokemonBaseStatsAction(this.pokemonURL)
-      : super(actionKey: getPokemonBaseStatsKey);
+  GetPokemonBaseStatsAction(this.pokemonURL) : super(actionKey: getPokemonBaseStatsKey);
 
   final String? pokemonURL;
 
@@ -52,15 +51,13 @@ class GetPokemonBaseStatsAction extends LoadingAction {
 
 /// Get pokemon evolution details and save it to the state
 class GetPokemonEvolutionChainAction extends LoadingAction {
-  GetPokemonEvolutionChainAction(this.pokemonId)
-      : super(actionKey: getPokemonEvolutionKey);
+  GetPokemonEvolutionChainAction(this.pokemonId) : super(actionKey: getPokemonEvolutionKey);
 
   final int? pokemonId;
 
   @override
   Future<AppState?> reduce() async {
-    final evolutions =
-        await PokemonHandler.getPokemonEvolutionChain(pokemonId!);
+    final evolutions = await PokemonHandler.getPokemonEvolutionChain(pokemonId!);
     return state.copyWith(evolutions: evolutions);
   }
 }

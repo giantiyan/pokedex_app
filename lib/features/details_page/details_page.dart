@@ -36,10 +36,7 @@ class DetailsPage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            (specificPokemon?.name)
-                                .toString()
-                                .replaceDash
-                                .toTitleCase,
+                            (specificPokemon?.name).toString().replaceDash.toTitleCase,
                             style: const TextStyle(
                               fontSize: 32,
                               fontWeight: FontWeight.bold,
@@ -49,10 +46,7 @@ class DetailsPage extends StatelessWidget {
                           Align(
                             alignment: Alignment.centerRight,
                             child: Text(
-                              specificPokemon?.url?.pokemonId
-                                      .toString()
-                                      .formatID ??
-                                  '',
+                              specificPokemon?.url?.pokemonId.toString().formatID ?? '',
                               style: const TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
@@ -61,21 +55,14 @@ class DetailsPage extends StatelessWidget {
                             ),
                           ),
                           Row(
-                            children: [
-                              ...?types
-                                  ?.map((type) => Type(typeName: type.name))
-                            ],
+                            children: [...?types?.map((type) => Type(typeName: type.name))],
                           ),
                           Center(
                             child: CachedNetworkImage(
-                              imageUrl: specificPokemon?.url?.pokemonId
-                                      .toString()
-                                      .pokemonImage ??
-                                  '',
+                              imageUrl: specificPokemon?.url?.pokemonId.toString().pokemonImage ?? '',
                               height: 210,
                               placeholder: (context, url) => spinKitRipple,
-                              errorWidget: (context, url, error) =>
-                                  const Icon(Icons.error),
+                              errorWidget: (context, url, error) => const Icon(Icons.error),
                             ),
                           ),
                           SizedBox(height: 10),
@@ -85,8 +72,7 @@ class DetailsPage extends StatelessWidget {
                     child: Container(
                       decoration: BoxDecoration(
                         color: white,
-                        borderRadius:
-                            BorderRadius.vertical(top: Radius.circular(25)),
+                        borderRadius: BorderRadius.vertical(top: Radius.circular(25)),
                         boxShadow: [
                           BoxShadow(
                             color: Colors.black26.withOpacity(0.2),
@@ -104,8 +90,7 @@ class DetailsPage extends StatelessWidget {
                             TabBar(
                               indicatorColor: red,
                               labelColor: black,
-                              labelPadding:
-                                  EdgeInsets.symmetric(horizontal: 10.0),
+                              labelPadding: EdgeInsets.symmetric(horizontal: 10.0),
                               tabs: [
                                 Tab(text: about),
                                 Tab(text: baseStats),
@@ -121,8 +106,7 @@ class DetailsPage extends StatelessWidget {
                                     pokemonURL: specificPokemon?.url,
                                     pokemonType: types?.first.name,
                                   ),
-                                  EvolutionTabConnector(
-                                      specificPokemon?.url?.pokemonId),
+                                  EvolutionTabConnector(specificPokemon?.url?.pokemonId),
                                   MovesTabConnector(
                                     pokemonURL: specificPokemon?.url,
                                     pokemonType: types?.first.name,

@@ -21,9 +21,7 @@ class PokemonHandler {
     if (response.statusCode == 200) {
       final results = jsonDecode(response.body)['results'];
 
-      return (results as List)
-          .map((pokemon) => PokemonModel.fromJson(pokemon))
-          .toList();
+      return (results as List).map((pokemon) => PokemonModel.fromJson(pokemon)).toList();
     } else {
       return null;
     }
@@ -41,9 +39,7 @@ class PokemonHandler {
     if (response.statusCode == 200) {
       final results = jsonDecode(response.body)['pokemon'];
 
-      return (results as List)
-          .map((pokemon) => PokemonModel.fromJson(pokemon['pokemon']))
-          .toList();
+      return (results as List).map((pokemon) => PokemonModel.fromJson(pokemon['pokemon'])).toList();
     } else {
       return null;
     }
@@ -60,9 +56,7 @@ class PokemonHandler {
 
     if (response.statusCode == 200) {
       final results = jsonDecode(response.body)['types'];
-      return (results as List)
-          .map((type) => PokemonTypeModel.fromJson(type['type']))
-          .toList();
+      return (results as List).map((type) => PokemonTypeModel.fromJson(type['type'])).toList();
     } else {
       print('Can\'t get Pokemon types. Error ${response.statusCode}');
       return [];
@@ -87,8 +81,7 @@ class PokemonHandler {
     }
   }
 
-  static Future<List<PokemonBaseStatModel>?> getPokemonBaseStats(
-      String url) async {
+  static Future<List<PokemonBaseStatModel>?> getPokemonBaseStats(String url) async {
     var response = http.Response('', 100);
 
     try {
@@ -99,21 +92,17 @@ class PokemonHandler {
 
     if (response.statusCode == 200) {
       final results = jsonDecode(response.body)['stats'];
-      return (results as List)
-          .map((stats) => PokemonBaseStatModel.fromJson(stats))
-          .toList();
+      return (results as List).map((stats) => PokemonBaseStatModel.fromJson(stats)).toList();
     } else {
       return null;
     }
   }
 
-  static Future<PokemonEvolutionsModel?> getPokemonEvolutionChain(
-      int id) async {
+  static Future<PokemonEvolutionsModel?> getPokemonEvolutionChain(int id) async {
     var response = http.Response('', 100);
 
     try {
-      response =
-          await http.get(Uri.tryParse('$pokemonSpeciesURL/$id') ?? Uri());
+      response = await http.get(Uri.tryParse('$pokemonSpeciesURL/$id') ?? Uri());
     } catch (e) {
       print(e);
     }
@@ -128,8 +117,7 @@ class PokemonHandler {
     }
   }
 
-  static Future<PokemonEvolutionsModel?> getPokemonEvolutions(
-      String url) async {
+  static Future<PokemonEvolutionsModel?> getPokemonEvolutions(String url) async {
     var response = http.Response('', 100);
 
     try {
@@ -142,8 +130,7 @@ class PokemonHandler {
       final results = jsonDecode(response.body)['chain'];
       final secondEvolutionResults = (results['evolves_to'] as List);
       final hasSecondEvolution = secondEvolutionResults.isNotEmpty;
-      final hasThirdEvolution = hasSecondEvolution &&
-          secondEvolutionResults.first['evolves_to'].isNotEmpty;
+      final hasThirdEvolution = hasSecondEvolution && secondEvolutionResults.first['evolves_to'].isNotEmpty;
 
       var thirdEvolutionList = <PokemonModel>[];
 
@@ -152,8 +139,7 @@ class PokemonHandler {
               List thirdEvolutionResults = pokemon['evolves_to'];
 
               thirdEvolutionResults
-                  .map((evolution) => thirdEvolutionList
-                      .add(PokemonModel.fromJson(evolution['species'])))
+                  .map((evolution) => thirdEvolutionList.add(PokemonModel.fromJson(evolution['species'])))
                   .toList();
             }).toList()
           : [];
@@ -161,9 +147,7 @@ class PokemonHandler {
       return PokemonEvolutionsModel(
         firstEvolution: PokemonModel.fromJson(results['species']),
         secondEvolutions: hasSecondEvolution
-            ? secondEvolutionResults
-                .map((pokemon) => PokemonModel.fromJson(pokemon['species']))
-                .toList()
+            ? secondEvolutionResults.map((pokemon) => PokemonModel.fromJson(pokemon['species'])).toList()
             : [],
         thirdEvolutions: thirdEvolutionList,
       );
@@ -183,9 +167,7 @@ class PokemonHandler {
 
     if (response.statusCode == 200) {
       final results = jsonDecode(response.body)['moves'];
-      final movesResults = (results as List)
-          .map((moves) => PokemonMoveModel.fromJson(moves['move']))
-          .toList();
+      final movesResults = (results as List).map((moves) => PokemonMoveModel.fromJson(moves['move'])).toList();
 
       return movesResults;
     } else {

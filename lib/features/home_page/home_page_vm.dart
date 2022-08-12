@@ -34,14 +34,8 @@ class HomePageVmFactory extends VmFactory<AppState, HomePageConnector> {
   void _onSearchPokemons(query) {
     var searchedPokemon = state.pokemon
         ?.where((pokemon) =>
-            pokemon.name!
-                .toString()
-                .toLowerCase()
-                .contains(query.toLowerCase()) ||
-            pokemon.url!.pokemonId
-                .toString()
-                .toLowerCase()
-                .contains(query.toLowerCase()))
+            pokemon.name!.toString().toLowerCase().contains(query.toLowerCase()) ||
+            pokemon.url!.pokemonId.toString().toLowerCase().contains(query.toLowerCase()))
         .toList();
 
     dispatch(SearchPokemonAction(searchedPokemon));

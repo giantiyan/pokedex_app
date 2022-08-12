@@ -10,6 +10,5 @@ class PokemonMoveModel with _$PokemonMoveModel {
     @JsonKey(name: 'name') String? name,
   }) = _PokemonMoveModel;
 
-  factory PokemonMoveModel.fromJson(Map<String, dynamic> json) =>
-      _$PokemonMoveModelFromJson(json);
+  factory PokemonMoveModel.fromJson(Map<String, dynamic> json) => _$PokemonMoveModelFromJson(json);
 }

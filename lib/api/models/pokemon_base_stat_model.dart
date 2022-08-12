@@ -10,6 +10,5 @@ class PokemonBaseStatModel with _$PokemonBaseStatModel {
     @JsonKey(name: 'base_stat') int? baseStat,
   }) = _PokemonBaseStatModel;
 
-  factory PokemonBaseStatModel.fromJson(Map<String, dynamic> json) =>
-      _$PokemonBaseStatModelFromJson(json);
+  factory PokemonBaseStatModel.fromJson(Map<String, dynamic> json) => _$PokemonBaseStatModelFromJson(json);
 }

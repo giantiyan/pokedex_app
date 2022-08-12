@@ -3,14 +3,10 @@ import 'package:pokedex/utilities/colors.dart';
 import 'package:intl/intl.dart';
 
 extension StringExt on String {
-  String get capitalize =>
-      '${this[0].toUpperCase()}${substring(1).toLowerCase()}';
+  String get capitalize => '${this[0].toUpperCase()}${substring(1).toLowerCase()}';
 
-  String get toTitleCase => this
-      .toLowerCase()
-      .split(' ')
-      .map((word) => word[0].toUpperCase() + word.substring(1))
-      .join(' ');
+  String get toTitleCase =>
+      this.toLowerCase().split(' ').map((word) => word[0].toUpperCase() + word.substring(1)).join(' ');
 
   String get pokemonImage {
     // return 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/$this.png';
@@ -149,9 +145,5 @@ extension StringExt on String {
 }
 
 extension ListStringExt on List<String> {
-  String get capitalizedAbilities => map((ability) => ability)
-      .toString()
-      .removeParenthesis
-      .replaceDash
-      .toTitleCase;
+  String get capitalizedAbilities => map((ability) => ability).toString().removeParenthesis.replaceDash.toTitleCase;
 }

@@ -29,8 +29,7 @@ class AboutTab extends StatelessWidget {
                   AboutInformation(
                     label: abilities,
                     value: about?.abilities
-                        ?.map((abilities) =>
-                            abilities['ability']['name'].toString())
+                        ?.map((abilities) => abilities['ability']['name'].toString())
                         .toList()
                         .capitalizedAbilities,
                   ),

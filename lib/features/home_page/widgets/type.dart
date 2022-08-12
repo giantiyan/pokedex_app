@@ -19,9 +19,7 @@ class Type extends StatelessWidget {
         vertical: 6,
       ),
       decoration: BoxDecoration(
-        color: pokemonType != null
-            ? pokemonType.toString().pokemonColor
-            : white.withOpacity(0.25),
+        color: pokemonType != null ? pokemonType.toString().pokemonColor : white.withOpacity(0.25),
         borderRadius: BorderRadius.circular(25),
       ),
       margin: EdgeInsets.only(

@@ -51,8 +51,7 @@ class ClearSearchPokemonAction extends ReduxAction<AppState> {
 
 /// Filter pokemons and save it to the state
 class FilterPokemonAction extends LoadingAction {
-  FilterPokemonAction(this.pokemonType)
-      : super(actionKey: filterPokemonListKey);
+  FilterPokemonAction(this.pokemonType) : super(actionKey: filterPokemonListKey);
 
   final String? pokemonType;
 
@@ -82,6 +81,5 @@ class ChangeFilterCancelVisibilityAction extends ReduxAction<AppState> {
   final bool? isFilterButtonVisible;
 
   @override
-  AppState reduce() =>
-      state.copyWith(isFilterButtonVisible: isFilterButtonVisible);
+  AppState reduce() => state.copyWith(isFilterButtonVisible: isFilterButtonVisible);
 }
