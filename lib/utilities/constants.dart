@@ -30,4 +30,3 @@ const spinKitDualRing = SpinKitDualRing(
 const searchBarHeight = 46.0;
 
 const searchBarWidth = 220.0;
-

@@ -43,10 +43,8 @@ class SearchPokemonAction extends ReduxAction<AppState> {
   AppState reduce() => state.copyWith(searchedPokemon: searchedPokemon);
 }
 
-
 /// Clear searched pokemons and save it to the state
 class ClearSearchPokemonAction extends ReduxAction<AppState> {
-
   @override
   AppState reduce() => state.copyWith(searchedPokemon: null);
 }
@@ -84,5 +82,6 @@ class ChangeFilterCancelVisibilityAction extends ReduxAction<AppState> {
   final bool? isFilterButtonVisible;
 
   @override
-  AppState reduce() => state.copyWith(isFilterButtonVisible: isFilterButtonVisible);
+  AppState reduce() =>
+      state.copyWith(isFilterButtonVisible: isFilterButtonVisible);
 }

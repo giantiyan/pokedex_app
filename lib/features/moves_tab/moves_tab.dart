@@ -19,10 +19,13 @@ class MovesTab extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(10.0),
               child: Wrap(
-                children: moves?.map((moves) => Type(
-                  typeName: moves.name?.replaceDash.toTitleCase,
-                  pokemonType: pokemonType,
-                )).toList() ?? [],
+                children: moves
+                        ?.map((moves) => Type(
+                              typeName: moves.name?.replaceDash.toTitleCase,
+                              pokemonType: pokemonType,
+                            ))
+                        .toList() ??
+                    [],
               ),
             ),
           )

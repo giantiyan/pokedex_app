@@ -146,9 +146,12 @@ extension StringExt on String {
   }
 
   String get toBaseExp => '$this xp';
-
 }
 
 extension ListStringExt on List<String> {
-  String get capitalizedAbilities => map((ability) => ability).toString().removeParenthesis.replaceDash.toTitleCase;
+  String get capitalizedAbilities => map((ability) => ability)
+      .toString()
+      .removeParenthesis
+      .replaceDash
+      .toTitleCase;
 }

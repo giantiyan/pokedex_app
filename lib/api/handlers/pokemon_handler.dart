@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:dio/dio.dart';
 import 'package:pokedex/api/models/pokemon_about_model.dart';
 import 'package:pokedex/api/models/pokemon_base_stat_model.dart';
 import 'package:pokedex/api/models/pokemon_evolutions_model.dart';
@@ -143,7 +142,7 @@ class PokemonHandler {
       final results = jsonDecode(response.body)['chain'];
       final secondEvolutionResults = (results['evolves_to'] as List);
       final hasSecondEvolution = secondEvolutionResults.isNotEmpty;
-      final bool hasThirdEvolution = hasSecondEvolution &&
+      final hasThirdEvolution = hasSecondEvolution &&
           secondEvolutionResults.first['evolves_to'].isNotEmpty;
 
       var thirdEvolutionList = <PokemonModel>[];
