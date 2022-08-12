@@ -43,18 +43,15 @@ class SearchPokemonAction extends ReduxAction<AppState> {
   AppState reduce() => state.copyWith(searchedPokemon: searchedPokemon);
 }
 
-
 /// Clear searched pokemons and save it to the state
 class ClearSearchPokemonAction extends ReduxAction<AppState> {
-
   @override
   AppState reduce() => state.copyWith(searchedPokemon: null);
 }
 
 /// Filter pokemons and save it to the state
 class FilterPokemonAction extends LoadingAction {
-  FilterPokemonAction(this.pokemonType)
-      : super(actionKey: filterPokemonListKey);
+  FilterPokemonAction(this.pokemonType) : super(actionKey: filterPokemonListKey);
 
   final String? pokemonType;
 

@@ -9,10 +9,9 @@ class PokemonAboutModel with _$PokemonAboutModel {
   factory PokemonAboutModel({
     @JsonKey(name: 'height') int? height,
     @JsonKey(name: 'weight') int? weight,
-    @JsonKey(name: 'abilities') List<String>? abilities,
+    @JsonKey(name: 'abilities') List<dynamic>? abilities,
     @JsonKey(name: 'base_experience') int? base_experience,
   }) = _PokemonAboutModel;
 
-  factory PokemonAboutModel.fromJson(Map<String, dynamic> json) =>
-      _$PokemonAboutModelFromJson(json);
+  factory PokemonAboutModel.fromJson(Map<String, dynamic> json) => _$PokemonAboutModelFromJson(json);
 }

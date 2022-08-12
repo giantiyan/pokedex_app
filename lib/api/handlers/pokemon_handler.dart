@@ -1,11 +1,10 @@
 import 'dart:convert';
-import 'package:dartx/dartx.dart';
 import 'package:pokedex/api/models/pokemon_about_model.dart';
-import 'package:pokedex/api/models/pokemon_base_stats_model.dart';
+import 'package:pokedex/api/models/pokemon_base_stat_model.dart';
 import 'package:pokedex/api/models/pokemon_evolutions_model.dart';
 import 'package:pokedex/api/models/pokemon_model.dart';
 import 'package:http/http.dart' as http;
-import 'package:pokedex/api/models/pokemon_moves_model.dart';
+import 'package:pokedex/api/models/pokemon_move_model.dart';
 import 'package:pokedex/api/models/pokemon_type_model.dart';
 import 'package:pokedex/utilities/constants.dart';
 
@@ -20,17 +19,9 @@ class PokemonHandler {
     }
 
     if (response.statusCode == 200) {
-      final List results = jsonDecode(response.body)['results'];
+      final results = jsonDecode(response.body)['results'];
 
-      final pokemonResults = results
-          .mapIndexed((index, pokemon) => PokemonModel(
-                name: pokemon['name'],
-                url: pokemon['url'],
-                id: index + 1,
-              ))
-          .toList();
-
-      return pokemonResults;
+      return (results as List).map((pokemon) => PokemonModel.fromJson(pokemon)).toList();
     } else {
       return null;
     }
@@ -46,17 +37,9 @@ class PokemonHandler {
     }
 
     if (response.statusCode == 200) {
-      final List results = jsonDecode(response.body)['pokemon'];
+      final results = jsonDecode(response.body)['pokemon'];
 
-      final pokemonResults = results
-          .map((pokemon) => PokemonModel(
-                name: pokemon['pokemon']['name'],
-                url: pokemon['pokemon']['url'],
-                id: int.parse(
-                    pokemon['pokemon']['url'].toString().split('/')[6]),
-              ))
-          .toList();
-      return pokemonResults;
+      return (results as List).map((pokemon) => PokemonModel.fromJson(pokemon['pokemon'])).toList();
     } else {
       return null;
     }
@@ -72,13 +55,8 @@ class PokemonHandler {
     }
 
     if (response.statusCode == 200) {
-      final List results = jsonDecode(response.body)['types'];
-      final typeResults = results
-          .mapIndexed(
-              (index, type) => PokemonTypeModel(name: type['type']['name']))
-          .toList();
-
-      return typeResults;
+      final results = jsonDecode(response.body)['types'];
+      return (results as List).map((type) => PokemonTypeModel.fromJson(type['type'])).toList();
     } else {
       print('Can\'t get Pokemon types. Error ${response.statusCode}');
       return [];
@@ -96,22 +74,14 @@ class PokemonHandler {
 
     if (response.statusCode == 200) {
       final results = jsonDecode(response.body);
-      final List abilityResults = results['abilities'];
 
-      return PokemonAboutModel(
-        height: results['height'],
-        weight: results['weight'],
-        base_experience: results['base_experience'],
-        abilities: abilityResults
-            .map((ability) => ability['ability']['name'].toString())
-            .toList(),
-      );
+      return PokemonAboutModel.fromJson(results);
     } else {
       return null;
     }
   }
 
-  static Future<PokemonBaseStatsModel?> getPokemonBaseStats(String url) async {
+  static Future<List<PokemonBaseStatModel>?> getPokemonBaseStats(String url) async {
     var response = http.Response('', 100);
 
     try {
@@ -121,29 +91,18 @@ class PokemonHandler {
     }
 
     if (response.statusCode == 200) {
-      final results = jsonDecode(response.body);
-      final List baseStatsResults = results['stats'];
-
-      return PokemonBaseStatsModel(
-        base_stat: baseStatsResults
-            .map((base_stat) => base_stat['base_stat'].toString())
-            .toList(),
-        name: baseStatsResults
-            .map((name) => name['stat']['name'].toString())
-            .toList(),
-      );
+      final results = jsonDecode(response.body)['stats'];
+      return (results as List).map((stats) => PokemonBaseStatModel.fromJson(stats)).toList();
     } else {
       return null;
     }
   }
 
-  static Future<PokemonEvolutionsModel?> getPokemonEvolutionChain(
-      int id) async {
+  static Future<PokemonEvolutionsModel?> getPokemonEvolutionChain(int id) async {
     var response = http.Response('', 100);
 
     try {
-      response =
-          await http.get(Uri.tryParse('$pokemonSpeciesURL/$id') ?? Uri());
+      response = await http.get(Uri.tryParse('$pokemonSpeciesURL/$id') ?? Uri());
     } catch (e) {
       print(e);
     }
@@ -158,8 +117,7 @@ class PokemonHandler {
     }
   }
 
-  static Future<PokemonEvolutionsModel?> getPokemonEvolutions(
-      String url) async {
+  static Future<PokemonEvolutionsModel?> getPokemonEvolutions(String url) async {
     var response = http.Response('', 100);
 
     try {
@@ -170,21 +128,9 @@ class PokemonHandler {
 
     if (response.statusCode == 200) {
       final results = jsonDecode(response.body)['chain'];
-      final List secondEvolutionResults = results['evolves_to'];
-      var hasSecondEvolution;
-      var hasThirdEvolution;
-
-      if (secondEvolutionResults.isEmpty) {
-        hasSecondEvolution = false;
-        hasThirdEvolution = false;
-      } else {
-        hasSecondEvolution = true;
-
-        if (secondEvolutionResults.first['evolves_to'].isEmpty)
-          hasThirdEvolution = false;
-        else
-          hasThirdEvolution = true;
-      }
+      final secondEvolutionResults = (results['evolves_to'] as List);
+      final hasSecondEvolution = secondEvolutionResults.isNotEmpty;
+      final hasThirdEvolution = hasSecondEvolution && secondEvolutionResults.first['evolves_to'].isNotEmpty;
 
       var thirdEvolutionList = <PokemonModel>[];
 
@@ -192,30 +138,16 @@ class PokemonHandler {
           ? secondEvolutionResults.map((pokemon) {
               List thirdEvolutionResults = pokemon['evolves_to'];
 
-              thirdEvolutionResults.map((pokemon2) {
-                thirdEvolutionList.add(PokemonModel(
-                  name: pokemon2['species']['name'],
-                  url: pokemon2['species']['url'],
-                  id: int.parse(pokemon2['species']['url'].split('/')[6]),
-                ));
-              }).toList();
+              thirdEvolutionResults
+                  .map((evolution) => thirdEvolutionList.add(PokemonModel.fromJson(evolution['species'])))
+                  .toList();
             }).toList()
           : [];
 
       return PokemonEvolutionsModel(
-        firstEvolution: PokemonModel(
-          name: results['species']['name'],
-          url: results['species']['url'],
-          id: int.parse(results['species']['url'].split('/')[6]),
-        ),
+        firstEvolution: PokemonModel.fromJson(results['species']),
         secondEvolutions: hasSecondEvolution
-            ? secondEvolutionResults.map((pokemon) {
-                return PokemonModel(
-                  name: pokemon['species']['name'],
-                  url: pokemon['species']['url'],
-                  id: int.parse(pokemon['species']['url'].split('/')[6]),
-                );
-              }).toList()
+            ? secondEvolutionResults.map((pokemon) => PokemonModel.fromJson(pokemon['species'])).toList()
             : [],
         thirdEvolutions: thirdEvolutionList,
       );
@@ -224,7 +156,7 @@ class PokemonHandler {
     }
   }
 
-  static Future<PokemonMovesModel?> getPokemonMoves(String url) async {
+  static Future<List<PokemonMoveModel>?> getPokemonMoves(String url) async {
     var response = http.Response('', 100);
 
     try {
@@ -234,14 +166,10 @@ class PokemonHandler {
     }
 
     if (response.statusCode == 200) {
-      final results = jsonDecode(response.body);
-      final List movesResults = results['moves'];
+      final results = jsonDecode(response.body)['moves'];
+      final movesResults = (results as List).map((moves) => PokemonMoveModel.fromJson(moves['move'])).toList();
 
-      return PokemonMovesModel(
-        name: movesResults
-            .map((name) => name['move']['name'].toString())
-            .toList(),
-      );
+      return movesResults;
     } else {
       return null;
     }

@@ -10,9 +10,7 @@ class PokemonModel with _$PokemonModel {
   factory PokemonModel({
     @JsonKey(name: 'name') String? name,
     @JsonKey(name: 'url') String? url,
-    @JsonKey(name: 'id') int? id,
   }) = _PokemonModel;
 
-  factory PokemonModel.fromJson(Map<String, dynamic> json) =>
-      _$PokemonModelFromJson(json);
+  factory PokemonModel.fromJson(Map<String, dynamic> json) => _$PokemonModelFromJson(json);
 }

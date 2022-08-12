@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pokedex/api/models/pokemon_evolutions_model.dart';
 import 'package:pokedex/features/evolution_tab/widgets/evolution_column.dart';
 import 'package:pokedex/features/evolution_tab/widgets/evolution_tile.dart';
+import 'package:pokedex/utilities/extensions.dart';
 
 class EvolutionTab extends StatelessWidget {
   const EvolutionTab({this.evolutions});
@@ -19,7 +20,7 @@ class EvolutionTab extends StatelessWidget {
                 children: [
                   EvolutionTile(
                     name: evolutions?.firstEvolution?.name,
-                    id: evolutions?.firstEvolution?.id,
+                    id: evolutions?.firstEvolution?.url?.pokemonId,
                     isNotFirstEvolution: false,
                   ),
                 ],

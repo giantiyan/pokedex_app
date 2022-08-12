@@ -1,8 +1,8 @@
 import 'package:dartx/dartx.dart';
 import 'package:flutter/material.dart';
-import 'package:pokedex/api/models/pokemon_base_stats_model.dart';
+import 'package:pokedex/api/models/pokemon_base_stat_model.dart';
 import 'package:pokedex/features/base_stats_tab/widgets/base_stats_information.dart';
-import 'package:pokedex/utilities/extensions.dart';
+import 'package:pokedex/utilities/string_constants.dart';
 
 class BaseStatsTab extends StatelessWidget {
   BaseStatsTab({
@@ -10,14 +10,11 @@ class BaseStatsTab extends StatelessWidget {
     this.pokemonType,
   });
 
-  final PokemonBaseStatsModel? baseStats;
+  final List<PokemonBaseStatModel>? baseStats;
   final String? pokemonType;
 
   @override
   Widget build(BuildContext context) {
-    var statNameList =
-        baseStats?.name?.map((name) => name.toString()).toList() ?? [];
-
     return (baseStats != null)
         ? SingleChildScrollView(
             child: Padding(
@@ -25,10 +22,10 @@ class BaseStatsTab extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  ...?baseStats?.base_stat?.mapIndexed(
-                    (index, base_stat) => BaseStatsInformation(
-                      label: statNameList[index].baseStatLabel,
-                      value: base_stat.toString(),
+                  ...?baseStats?.mapIndexed(
+                    (index, stat) => BaseStatsInformation(
+                      label: statName[index],
+                      value: stat.baseStat.toString(),
                       pokemonType: pokemonType,
                     ),
                   ),

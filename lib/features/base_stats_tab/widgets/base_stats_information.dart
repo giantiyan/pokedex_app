@@ -39,8 +39,7 @@ class BaseStatsInformation extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
               child: LinearProgressIndicator(
                 value: double?.parse(value ?? '0') / 200,
-                valueColor: new AlwaysStoppedAnimation<Color>(
-                    pokemonType.toString().pokemonColor),
+                valueColor: new AlwaysStoppedAnimation<Color>(pokemonType.toString().pokemonColor),
                 backgroundColor: Colors.grey[200],
                 minHeight: 6,
               ),

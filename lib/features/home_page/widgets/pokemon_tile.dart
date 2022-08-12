@@ -30,8 +30,7 @@ class _PokemonTileState extends State<PokemonTile> {
     Future.delayed(
       Duration.zero,
       () async {
-        await PokemonHandler.getPokemonType(widget.pokemon?.url ?? '')
-            .then((value) {
+        await PokemonHandler.getPokemonType(widget.pokemon?.url ?? '').then((value) {
           if (!mounted) return;
           setState(() => types = value);
         });
@@ -62,9 +61,7 @@ class _PokemonTileState extends State<PokemonTile> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            DetailsPageConnector(widget.pokemon!)),
+                    MaterialPageRoute(builder: (context) => DetailsPageConnector(widget.pokemon!)),
                   );
                 },
                 child: Padding(
@@ -72,11 +69,7 @@ class _PokemonTileState extends State<PokemonTile> {
                   child: Column(
                     children: [
                       Text(
-                        widget.pokemon?.name
-                                ?.toString()
-                                .replaceDash
-                                .toTitleCase ??
-                            '',
+                        widget.pokemon?.name?.toString().replaceDash.toTitleCase ?? '',
                         style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
@@ -89,20 +82,13 @@ class _PokemonTileState extends State<PokemonTile> {
                           children: [
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                ...?types
-                                    ?.map((type) => Type(typeName: type.name))
-                              ],
+                              children: [...?types?.map((type) => Type(typeName: type.name))],
                             ),
                             Flexible(
                               child: CachedNetworkImage(
-                                imageUrl: widget.pokemon?.id
-                                        .toString()
-                                        .pokemonImage ??
-                                    '',
+                                imageUrl: widget.pokemon?.url?.pokemonId.toString().pokemonImage ?? '',
                                 placeholder: (context, url) => spinKitRipple,
-                                errorWidget: (context, url, error) =>
-                                    const Icon(Icons.error),
+                                errorWidget: (context, url, error) => const Icon(Icons.error),
                               ),
                             ),
                           ],

@@ -3,19 +3,17 @@ import 'package:pokedex/utilities/colors.dart';
 import 'package:intl/intl.dart';
 
 extension StringExt on String {
-  String get capitalize =>
-      '${this[0].toUpperCase()}${substring(1).toLowerCase()}';
+  String get capitalize => '${this[0].toUpperCase()}${substring(1).toLowerCase()}';
 
-  String get toTitleCase => this
-      .toLowerCase()
-      .split(' ')
-      .map((word) => word[0].toUpperCase() + word.substring(1))
-      .join(' ');
+  String get toTitleCase =>
+      this.toLowerCase().split(' ').map((word) => word[0].toUpperCase() + word.substring(1)).join(' ');
 
   String get pokemonImage {
     // return 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/$this.png';
     return 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/$this.png';
   }
+
+  int get pokemonId => int.parse(Uri.parse(this).pathSegments[3]);
 
   Color get pokemonColor {
     var color = white;
@@ -144,21 +142,6 @@ extension StringExt on String {
   }
 
   String get toBaseExp => '$this xp';
-
-  String get shortcut => replaceAll('special', 'Sp')
-      .replaceAll('Special', 'Sp')
-      .replaceAll('attack', 'Atk')
-      .replaceAll('defense', 'Def');
-
-  String get baseStatLabel {
-    if (this == 'hp')
-      return this.toUpperCase();
-    else if (this == 'attack' || this == 'defense' || this == 'speed')
-      return this.capitalize;
-    else
-      return this.shortcut;
-  }
-
 }
 
 extension ListStringExt on List<String> {
