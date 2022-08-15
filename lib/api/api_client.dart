@@ -12,7 +12,7 @@ class ApiClient {
         onError: (DioError e, handler) => handler.next(e),
       ));
     if (!kReleaseMode) {
-      dio?.interceptors.add(PrettyDioLogger(
+      dio.interceptors.add(PrettyDioLogger(
         requestHeader: true,
         requestBody: true,
         responseBody: false,
@@ -22,5 +22,5 @@ class ApiClient {
   }
 
   final String baseUrl;
-  Dio? dio;
+  late Dio dio;
 }

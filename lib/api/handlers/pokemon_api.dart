@@ -19,7 +19,7 @@ class PokemonApi {
       query: 'limit=1154',
     );
 
-    return await apiClient.dio!.getUri(uri).then(
+    return await apiClient.dio.getUri(uri).then(
         (response) => (response.data['results'] as List).map((pokemon) => PokemonModel.fromJson(pokemon)).toList());
   }
 
@@ -28,7 +28,7 @@ class PokemonApi {
 
     final uri = baseUri.replace(path: baseUri.path + 'type/$type');
 
-    return await apiClient.dio!.getUri(uri).then((response) =>
+    return await apiClient.dio.getUri(uri).then((response) =>
         (response.data['pokemon'] as List).map((pokemon) => PokemonModel.fromJson(pokemon['pokemon'])).toList());
   }
 
@@ -37,7 +37,7 @@ class PokemonApi {
 
     final uri = baseUri.replace(path: baseUri.path + 'pokemon/$id');
 
-    return await apiClient.dio!.getUri(uri).then(
+    return await apiClient.dio.getUri(uri).then(
         (response) => (response.data['types'] as List).map((type) => PokemonTypeModel.fromJson(type['type'])).toList());
   }
 
@@ -46,7 +46,7 @@ class PokemonApi {
 
     final uri = baseUri.replace(path: baseUri.path + 'pokemon/$id');
 
-    return await apiClient.dio!.getUri(uri).then((response) => PokemonAboutModel.fromJson(response.data));
+    return await apiClient.dio.getUri(uri).then((response) => PokemonAboutModel.fromJson(response.data));
   }
 
   Future<List<PokemonBaseStatModel>?> getPokemonBaseStats(int id) async {
@@ -54,7 +54,7 @@ class PokemonApi {
 
     final uri = baseUri.replace(path: baseUri.path + 'pokemon/$id');
 
-    return await apiClient.dio!.getUri(uri).then(
+    return await apiClient.dio.getUri(uri).then(
         (response) => (response.data['stats'] as List).map((stats) => PokemonBaseStatModel.fromJson(stats)).toList());
   }
 
@@ -63,7 +63,7 @@ class PokemonApi {
 
     final uri = baseUri.replace(path: baseUri.path + 'pokemon-species/$id');
 
-    return await apiClient.dio!
+    return await apiClient.dio
         .getUri(uri)
         .then((response) => getPokemonEvolutions(response.data['evolution_chain']['url']));
   }
@@ -73,7 +73,7 @@ class PokemonApi {
 
     final uri = baseUri;
 
-    return await apiClient.dio!.getUri(uri).then((response) {
+    return await apiClient.dio.getUri(uri).then((response) {
       final results = response.data['chain'];
       final secondEvolutionResults = (results['evolves_to'] as List);
       final hasSecondEvolution = secondEvolutionResults.isNotEmpty;
@@ -106,7 +106,7 @@ class PokemonApi {
 
     final uri = baseUri.replace(path: baseUri.path + 'pokemon/$id');
 
-    return await apiClient.dio!.getUri(uri).then((response) =>
+    return await apiClient.dio.getUri(uri).then((response) =>
         (response.data['moves'] as List).map((moves) => PokemonMoveModel.fromJson(moves['move'])).toList());
   }
 }
