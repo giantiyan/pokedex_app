@@ -36,7 +36,7 @@ class EvolutionTile extends StatelessWidget {
             ),
             Text(
               name?.toString().replaceDash.toTitleCase ?? '',
-              style: textTheme.headline4,
+              style: textTheme.subtitle1?.copyWith(fontWeight: FontWeight.w500),
             ),
             Text(
               id?.toString().formatID ?? '',

@@ -30,7 +30,7 @@ class Type extends StatelessWidget {
       ),
       child: Text(
         typeName?.toTitleCase ?? '',
-        style: textTheme.subtitle2,
+        style: textTheme.subtitle1?.copyWith(color: white),
       ),
     );
   }
