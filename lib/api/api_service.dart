@@ -6,11 +6,7 @@ import 'handlers/pokemon_api.dart';
 class ApiService {
   PokemonApi get pokemonApi => PokemonApi(_pokemonAPIClient);
 
-  ApiClient get _pokemonAPIClient => _createApiClient(baseUrl: pokemonURL);
+  ApiClient get _pokemonAPIClient => _createApiClient(baseUrl: baseUrl);
 
-  ApiClient _createApiClient({required String baseUrl}) {
-    return ApiClient(
-      baseUrl: baseUrl,
-    );
-  }
+  ApiClient _createApiClient({required String baseUrl}) => ApiClient(baseUrl: baseUrl);
 }

@@ -25,17 +25,16 @@ class _PokemonTileState extends State<PokemonTile> {
   List<PokemonTypeModel>? types;
   String? url;
 
+  void _getTypes() async {
+    await getIt<ApiService>().pokemonApi.getPokemonType(widget.pokemon?.url ?? '').then((value) {
+      if (!mounted) return;
+      setState(() => types = value);
+    });
+  }
+
   @override
   void initState() {
-    Future.delayed(
-      Duration.zero,
-      () async {
-        await getIt<ApiService>().pokemonApi.getPokemonType(widget.pokemon?.url ?? '').then((value) {
-          if (!mounted) return;
-          setState(() => types = value);
-        });
-      },
-    );
+    _getTypes();
 
     super.initState();
   }
