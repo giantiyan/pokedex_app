@@ -1,10 +1,11 @@
 import 'dart:async';
 
 import 'package:async_redux/async_redux.dart';
-import 'package:pokedex/api/handlers/pokemon_handler.dart';
+import 'package:pokedex/api/api_service.dart';
 import 'package:pokedex/api/models/pokemon_model.dart';
 import 'package:pokedex/state/actions/actions.dart';
 import 'package:pokedex/state/app_state.dart';
+import 'package:pokedex/utilities/app_starter.dart';
 
 const getPokemonListKey = 'get-pokemon-list-key';
 const searchPokemonListKey = 'search-pokemon-list-key';
@@ -22,7 +23,7 @@ class GetPokemonAction extends LoadingAction {
 
   @override
   Future<AppState> reduce() async {
-    final pokemon = await PokemonHandler.getPokemon();
+    final pokemon = await getIt<ApiService>().pokemonApi.getPokemon();
     return state.copyWith(pokemon: pokemon);
   }
 
@@ -63,7 +64,7 @@ class FilterPokemonAction extends LoadingAction {
 
   @override
   Future<AppState> reduce() async {
-    final pokemon = await PokemonHandler.filterPokemon(pokemonType!);
+    final pokemon = await getIt<ApiService>().pokemonApi.filterPokemon(pokemonType!);
     return state.copyWith(pokemon: pokemon);
   }
 

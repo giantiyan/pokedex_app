@@ -1,11 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:pokedex/api/handlers/pokemon_handler.dart';
+import 'package:pokedex/api/api_service.dart';
 import 'package:pokedex/api/models/pokemon_model.dart';
 import 'package:pokedex/api/models/pokemon_type_model.dart';
 import 'package:pokedex/features/details_page/details_page_connector.dart';
 import 'package:pokedex/features/home_page/widgets/type.dart';
-import 'package:pokedex/utilities/colors.dart';
+import 'package:pokedex/utilities/app_starter.dart';
 import 'package:pokedex/utilities/constants.dart';
 import 'package:pokedex/utilities/extensions.dart';
 
@@ -25,17 +25,16 @@ class _PokemonTileState extends State<PokemonTile> {
   List<PokemonTypeModel>? types;
   String? url;
 
+  void _getTypes() async {
+    await getIt<ApiService>().pokemonApi.getPokemonType(widget.pokemon?.url?.pokemonId ?? 0).then((value) {
+      if (!mounted) return;
+      setState(() => types = value);
+    });
+  }
+
   @override
   void initState() {
-    Future.delayed(
-      Duration.zero,
-      () async {
-        await PokemonHandler.getPokemonType(widget.pokemon?.url ?? '').then((value) {
-          if (!mounted) return;
-          setState(() => types = value);
-        });
-      },
-    );
+    _getTypes();
 
     super.initState();
   }

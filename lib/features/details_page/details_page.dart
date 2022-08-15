@@ -95,14 +95,14 @@ class DetailsPage extends StatelessWidget {
                             Expanded(
                               child: TabBarView(
                                 children: [
-                                  AboutTabConnector(specificPokemon?.url),
+                                  AboutTabConnector(specificPokemon?.url?.pokemonId),
                                   BaseStatsTabConnector(
-                                    pokemonURL: specificPokemon?.url,
+                                    pokemonId: specificPokemon?.url?.pokemonId,
                                     pokemonType: types?.first.name,
                                   ),
                                   EvolutionTabConnector(specificPokemon?.url?.pokemonId),
                                   MovesTabConnector(
-                                    pokemonURL: specificPokemon?.url,
+                                    pokemonId: specificPokemon?.url?.pokemonId,
                                     pokemonType: types?.first.name,
                                   ),
                                 ],

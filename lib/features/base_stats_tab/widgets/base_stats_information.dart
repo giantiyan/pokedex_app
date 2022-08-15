@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex/utilities/colors.dart';
 import 'package:pokedex/utilities/extensions.dart';
 
 class BaseStatsInformation extends StatelessWidget {

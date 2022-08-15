@@ -1,8 +1,9 @@
 import 'dart:async';
 
-import 'package:pokedex/api/handlers/pokemon_handler.dart';
+import 'package:pokedex/api/api_service.dart';
 import 'package:pokedex/state/actions/actions.dart';
 import 'package:pokedex/state/app_state.dart';
+import 'package:pokedex/utilities/app_starter.dart';
 
 const getPokemonTypesKey = 'get_pokemon_types_key';
 const getPokemonAboutKey = 'get_pokemon_about_key';
@@ -12,39 +13,39 @@ const getPokemonMovesKey = 'get_pokemon_moves_key';
 
 /// Get pokemon types and save it to the state
 class GetPokemonTypesAction extends LoadingAction {
-  GetPokemonTypesAction(this.pokemonURL) : super(actionKey: getPokemonTypesKey);
+  GetPokemonTypesAction(this.pokemonId) : super(actionKey: getPokemonTypesKey);
 
-  final String? pokemonURL;
+  final int? pokemonId;
 
   @override
   Future<AppState> reduce() async {
-    final types = await PokemonHandler.getPokemonType(pokemonURL!);
+    final types = await getIt<ApiService>().pokemonApi.getPokemonType(pokemonId!);
     return state.copyWith(types: types);
   }
 }
 
 /// Get pokemon about details and save it to the state
 class GetPokemonAboutAction extends LoadingAction {
-  GetPokemonAboutAction(this.pokemonURL) : super(actionKey: getPokemonAboutKey);
+  GetPokemonAboutAction(this.pokemonId) : super(actionKey: getPokemonAboutKey);
 
-  final String? pokemonURL;
+  final int? pokemonId;
 
   @override
   Future<AppState> reduce() async {
-    final about = await PokemonHandler.getPokemonAbout(pokemonURL!);
+    final about = await getIt<ApiService>().pokemonApi.getPokemonAbout(pokemonId!);
     return state.copyWith(about: about);
   }
 }
 
 /// Get pokemon base stats details and save it to the state
 class GetPokemonBaseStatsAction extends LoadingAction {
-  GetPokemonBaseStatsAction(this.pokemonURL) : super(actionKey: getPokemonBaseStatsKey);
+  GetPokemonBaseStatsAction(this.pokemonId) : super(actionKey: getPokemonBaseStatsKey);
 
-  final String? pokemonURL;
+  final int? pokemonId;
 
   @override
   Future<AppState?> reduce() async {
-    final baseStats = await PokemonHandler.getPokemonBaseStats(pokemonURL!);
+    final baseStats = await getIt<ApiService>().pokemonApi.getPokemonBaseStats(pokemonId!);
     return state.copyWith(baseStats: baseStats);
   }
 }
@@ -57,20 +58,20 @@ class GetPokemonEvolutionChainAction extends LoadingAction {
 
   @override
   Future<AppState?> reduce() async {
-    final evolutions = await PokemonHandler.getPokemonEvolutionChain(pokemonId!);
+    final evolutions = await getIt<ApiService>().pokemonApi.getPokemonEvolutionChain(pokemonId!);
     return state.copyWith(evolutions: evolutions);
   }
 }
 
 /// Get pokemon moves details and save it to the state
 class GetPokemonMovesAction extends LoadingAction {
-  GetPokemonMovesAction(this.pokemonURL) : super(actionKey: getPokemonMovesKey);
+  GetPokemonMovesAction(this.pokemonId) : super(actionKey: getPokemonMovesKey);
 
-  final String? pokemonURL;
+  final int? pokemonId;
 
   @override
   Future<AppState?> reduce() async {
-    final moves = await PokemonHandler.getPokemonMoves(pokemonURL!);
+    final moves = await getIt<ApiService>().pokemonApi.getPokemonMoves(pokemonId!);
     return state.copyWith(moves: moves);
   }
 }
