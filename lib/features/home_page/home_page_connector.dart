@@ -8,6 +8,8 @@ import 'package:pokedex/state/app_state.dart';
 class HomePageConnector extends StatelessWidget {
   const HomePageConnector();
 
+  static const String route = 'home-page-connector';
+
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, HomePageVm>(

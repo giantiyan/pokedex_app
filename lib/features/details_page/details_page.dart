@@ -38,14 +38,14 @@ class DetailsPage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            (specificPokemon?.name).toString().replaceDash.toTitleCase,
-                            style: textTheme.headline1
+                            specificPokemon?.name.toString().replaceDash.toTitleCase ?? '',
+                            style: textTheme.headline1,
                           ),
                           Align(
                             alignment: Alignment.centerRight,
                             child: Text(
                               specificPokemon?.url?.pokemonId.toString().formatID ?? '',
-                              style: textTheme.headline1?.copyWith(fontSize: 16)
+                              style: textTheme.headline1?.copyWith(fontSize: 16),
                             ),
                           ),
                           Row(
