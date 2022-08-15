@@ -13,6 +13,8 @@ class Type extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+
     return Container(
       padding: const EdgeInsets.symmetric(
         horizontal: 8,
@@ -28,7 +30,7 @@ class Type extends StatelessWidget {
       ),
       child: Text(
         typeName?.toTitleCase ?? '',
-        style: TextStyle(color: white),
+        style: textTheme.subtitle2,
       ),
     );
   }

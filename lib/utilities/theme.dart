@@ -19,15 +19,30 @@ final ThemeData theme = ThemeData(
       fontWeight: FontWeight.bold,
       fontSize: 16,
     ),
-    bodyText1: TextStyle(
-      color: black,
-      fontWeight: FontWeight.normal,
+    headline4: TextStyle(
       fontSize: 14,
+      fontWeight: FontWeight.w500,
+      color: black,
     ),
     labelMedium: TextStyle(
       fontSize: 16,
       fontWeight: FontWeight.w500,
       color: labelGrey,
+    ),
+    bodyText1: TextStyle(
+      color: black,
+      fontWeight: FontWeight.normal,
+      fontSize: 16,
+    ),
+    subtitle1: TextStyle(
+      color: black,
+      fontWeight: FontWeight.normal,
+      fontSize: 14,
+    ),
+    subtitle2: TextStyle(
+      color: white,
+      fontWeight: FontWeight.normal,
+      fontSize: 14,
     ),
   ),
 );

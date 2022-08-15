@@ -28,7 +28,7 @@ class BaseStatsInformation extends StatelessWidget {
             flex: 2,
             child: Text(
               value ?? '',
-              style: TextStyle(fontSize: 16),
+              style: textTheme.bodyText1,
             ),
           ),
           Expanded(

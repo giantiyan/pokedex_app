@@ -29,7 +29,7 @@ class AboutInformation extends StatelessWidget {
             flex: 6,
             child: Text(
               value ?? '',
-              style: TextStyle(fontSize: 16),
+              style: textTheme.bodyText1,
             ),
           ),
         ],
