@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:pokedex/api/api_client.dart';
 import 'package:pokedex/api/models/pokemon_about_model.dart';
 import 'package:pokedex/api/models/pokemon_base_stat_model.dart';
 import 'package:pokedex/api/models/pokemon_evolutions_model.dart';
@@ -8,8 +9,12 @@ import 'package:pokedex/api/models/pokemon_move_model.dart';
 import 'package:pokedex/api/models/pokemon_type_model.dart';
 import 'package:pokedex/utilities/constants.dart';
 
-class PokemonHandler {
-  static Future<List<PokemonModel>?> getPokemon() async {
+class PokemonApi {
+  PokemonApi(ApiClient apiClient) : apiClient = apiClient;
+
+  final ApiClient apiClient;
+
+  Future<List<PokemonModel>?> getPokemon() async {
     var response = http.Response('', 100);
 
     try {
@@ -27,7 +32,7 @@ class PokemonHandler {
     }
   }
 
-  static Future<List<PokemonModel>?> filterPokemon(String type) async {
+  Future<List<PokemonModel>?> filterPokemon(String type) async {
     var response = http.Response('', 100);
 
     try {
@@ -45,7 +50,7 @@ class PokemonHandler {
     }
   }
 
-  static Future<List<PokemonTypeModel>?> getPokemonType(String url) async {
+  Future<List<PokemonTypeModel>?> getPokemonType(String url) async {
     var response = http.Response('', 100);
 
     try {
@@ -63,7 +68,7 @@ class PokemonHandler {
     }
   }
 
-  static Future<PokemonAboutModel?> getPokemonAbout(String url) async {
+  Future<PokemonAboutModel?> getPokemonAbout(String url) async {
     var response = http.Response('', 100);
 
     try {
@@ -81,7 +86,7 @@ class PokemonHandler {
     }
   }
 
-  static Future<List<PokemonBaseStatModel>?> getPokemonBaseStats(String url) async {
+  Future<List<PokemonBaseStatModel>?> getPokemonBaseStats(String url) async {
     var response = http.Response('', 100);
 
     try {
@@ -98,7 +103,7 @@ class PokemonHandler {
     }
   }
 
-  static Future<PokemonEvolutionsModel?> getPokemonEvolutionChain(int id) async {
+  Future<PokemonEvolutionsModel?> getPokemonEvolutionChain(int id) async {
     var response = http.Response('', 100);
 
     try {
@@ -117,7 +122,7 @@ class PokemonHandler {
     }
   }
 
-  static Future<PokemonEvolutionsModel?> getPokemonEvolutions(String url) async {
+  Future<PokemonEvolutionsModel?> getPokemonEvolutions(String url) async {
     var response = http.Response('', 100);
 
     try {
@@ -156,7 +161,7 @@ class PokemonHandler {
     }
   }
 
-  static Future<List<PokemonMoveModel>?> getPokemonMoves(String url) async {
+  Future<List<PokemonMoveModel>?> getPokemonMoves(String url) async {
     var response = http.Response('', 100);
 
     try {

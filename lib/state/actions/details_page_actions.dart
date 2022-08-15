@@ -1,8 +1,10 @@
 import 'dart:async';
 
-import 'package:pokedex/api/handlers/pokemon_handler.dart';
+import 'package:pokedex/api/api_service.dart';
+import 'package:pokedex/api/handlers/pokemon_api.dart';
 import 'package:pokedex/state/actions/actions.dart';
 import 'package:pokedex/state/app_state.dart';
+import 'package:pokedex/utilities/app_starter.dart';
 
 const getPokemonTypesKey = 'get_pokemon_types_key';
 const getPokemonAboutKey = 'get_pokemon_about_key';
@@ -18,7 +20,7 @@ class GetPokemonTypesAction extends LoadingAction {
 
   @override
   Future<AppState> reduce() async {
-    final types = await PokemonHandler.getPokemonType(pokemonURL!);
+    final types = await getIt<ApiService>().pokemonApi.getPokemonType(pokemonURL!);
     return state.copyWith(types: types);
   }
 }
@@ -31,7 +33,7 @@ class GetPokemonAboutAction extends LoadingAction {
 
   @override
   Future<AppState> reduce() async {
-    final about = await PokemonHandler.getPokemonAbout(pokemonURL!);
+    final about = await getIt<ApiService>().pokemonApi.getPokemonAbout(pokemonURL!);
     return state.copyWith(about: about);
   }
 }
@@ -44,7 +46,7 @@ class GetPokemonBaseStatsAction extends LoadingAction {
 
   @override
   Future<AppState?> reduce() async {
-    final baseStats = await PokemonHandler.getPokemonBaseStats(pokemonURL!);
+    final baseStats = await getIt<ApiService>().pokemonApi.getPokemonBaseStats(pokemonURL!);
     return state.copyWith(baseStats: baseStats);
   }
 }
@@ -57,7 +59,7 @@ class GetPokemonEvolutionChainAction extends LoadingAction {
 
   @override
   Future<AppState?> reduce() async {
-    final evolutions = await PokemonHandler.getPokemonEvolutionChain(pokemonId!);
+    final evolutions = await getIt<ApiService>().pokemonApi.getPokemonEvolutionChain(pokemonId!);
     return state.copyWith(evolutions: evolutions);
   }
 }
@@ -70,7 +72,7 @@ class GetPokemonMovesAction extends LoadingAction {
 
   @override
   Future<AppState?> reduce() async {
-    final moves = await PokemonHandler.getPokemonMoves(pokemonURL!);
+    final moves = await getIt<ApiService>().pokemonApi.getPokemonMoves(pokemonURL!);
     return state.copyWith(moves: moves);
   }
 }
