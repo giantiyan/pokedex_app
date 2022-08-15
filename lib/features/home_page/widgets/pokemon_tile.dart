@@ -61,9 +61,10 @@ class _PokemonTileState extends State<PokemonTile> {
               color: Colors.transparent,
               child: InkWell(
                 onTap: () {
-                  Navigator.push(
+                  Navigator.pushNamed(
                     context,
-                    MaterialPageRoute(builder: (context) => DetailsPageConnector(widget.pokemon!)),
+                    DetailsPageConnector.route,
+                    arguments: DetailsPageConnectorArgs(specificPokemon: widget.pokemon!),
                   );
                 },
                 child: Padding(
