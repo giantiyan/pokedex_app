@@ -42,6 +42,8 @@ class _PokemonTileState extends State<PokemonTile> {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+
     return Container(
       decoration: BoxDecoration(
         color: types?.first.name.toString().pokemonColor,
@@ -70,11 +72,7 @@ class _PokemonTileState extends State<PokemonTile> {
                     children: [
                       Text(
                         widget.pokemon?.name?.toString().replaceDash.toTitleCase ?? '',
-                        style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: white,
-                        ),
+                        style: textTheme.headline2,
                       ),
                       const SizedBox(height: 8.0),
                       Flexible(

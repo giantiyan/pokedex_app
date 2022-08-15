@@ -2,6 +2,7 @@ import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:pokedex/features/home_page/home_page_connector.dart';
 import 'package:pokedex/state/app_state.dart';
+import 'package:pokedex/utilities/theme.dart';
 
 class PokedexApp extends StatelessWidget {
   const PokedexApp({required this.store});
@@ -13,7 +14,7 @@ class PokedexApp extends StatelessWidget {
     return StoreProvider(
       store: store,
       child: MaterialApp(
-        theme: ThemeData(primarySwatch: Colors.red),
+        theme: theme,
         home: const HomePageConnector(),
       ),
     );

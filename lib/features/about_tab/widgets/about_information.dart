@@ -12,6 +12,8 @@ class AboutInformation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+
     return Container(
       margin: EdgeInsets.only(bottom: 10),
       child: Row(
@@ -20,11 +22,7 @@ class AboutInformation extends StatelessWidget {
             flex: 4,
             child: Text(
               label ?? '',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-                color: labelGrey,
-              ),
+              style: textTheme.labelMedium,
             ),
           ),
           Expanded(

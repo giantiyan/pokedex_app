@@ -23,14 +23,16 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+
     return Scaffold(
       appBar: AppBar(
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Text(
+            Text(
               'Pokédex',
-              style: TextStyle(fontSize: 24),
+              style: textTheme.headline1,
             ),
             SearchBar(onSearch: onSearch),
           ],
