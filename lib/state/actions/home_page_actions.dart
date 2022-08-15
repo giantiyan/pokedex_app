@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:async_redux/async_redux.dart';
 import 'package:pokedex/api/api_service.dart';
-import 'package:pokedex/api/handlers/pokemon_api.dart';
 import 'package:pokedex/api/models/pokemon_model.dart';
 import 'package:pokedex/state/actions/actions.dart';
 import 'package:pokedex/state/app_state.dart';

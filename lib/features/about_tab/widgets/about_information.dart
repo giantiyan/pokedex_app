@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex/utilities/colors.dart';
 
 class AboutInformation extends StatelessWidget {
   const AboutInformation({
