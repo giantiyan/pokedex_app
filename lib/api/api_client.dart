@@ -3,9 +3,9 @@ import 'package:flutter/foundation.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class ApiClient {
-  ApiClient({required this.baseUrl}) : assert(baseUrl != null) {
+  ApiClient({required this.baseUrl}) {
     dio = Dio()
-      ..options.baseUrl = baseUrl!
+      ..options.baseUrl = baseUrl
       ..interceptors.add(InterceptorsWrapper(
         onRequest: (options, handler) => handler.next(options),
         onResponse: (response, handler) => handler.next(response),
@@ -21,6 +21,6 @@ class ApiClient {
     }
   }
 
-  final String? baseUrl;
+  final String baseUrl;
   Dio? dio;
 }

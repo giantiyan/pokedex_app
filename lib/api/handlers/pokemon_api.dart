@@ -12,7 +12,7 @@ class PokemonApi {
   final ApiClient apiClient;
 
   Future<List<PokemonModel>?> getPokemon() async {
-    final baseUri = Uri.parse(apiClient.baseUrl ?? '');
+    final baseUri = Uri.parse(apiClient.baseUrl);
 
     final uri = baseUri.replace(
       path: baseUri.path + 'pokemon',
@@ -24,7 +24,7 @@ class PokemonApi {
   }
 
   Future<List<PokemonModel>?> filterPokemon(String type) async {
-    final baseUri = Uri.parse(apiClient.baseUrl ?? '');
+    final baseUri = Uri.parse(apiClient.baseUrl);
 
     final uri = baseUri.replace(path: baseUri.path + 'type/$type');
 
@@ -33,7 +33,7 @@ class PokemonApi {
   }
 
   Future<List<PokemonTypeModel>?> getPokemonType(int id) async {
-    final baseUri = Uri.parse(apiClient.baseUrl ?? '');
+    final baseUri = Uri.parse(apiClient.baseUrl);
 
     final uri = baseUri.replace(path: baseUri.path + 'pokemon/$id');
 
@@ -42,7 +42,7 @@ class PokemonApi {
   }
 
   Future<PokemonAboutModel?> getPokemonAbout(int id) async {
-    final baseUri = Uri.parse(apiClient.baseUrl ?? '');
+    final baseUri = Uri.parse(apiClient.baseUrl);
 
     final uri = baseUri.replace(path: baseUri.path + 'pokemon/$id');
 
@@ -50,7 +50,7 @@ class PokemonApi {
   }
 
   Future<List<PokemonBaseStatModel>?> getPokemonBaseStats(int id) async {
-    final baseUri = Uri.parse(apiClient.baseUrl ?? '');
+    final baseUri = Uri.parse(apiClient.baseUrl);
 
     final uri = baseUri.replace(path: baseUri.path + 'pokemon/$id');
 
@@ -59,7 +59,7 @@ class PokemonApi {
   }
 
   Future<PokemonEvolutionsModel?> getPokemonEvolutionChain(int id) async {
-    final baseUri = Uri.parse(apiClient.baseUrl ?? '');
+    final baseUri = Uri.parse(apiClient.baseUrl);
 
     final uri = baseUri.replace(path: baseUri.path + 'pokemon-species/$id');
 
@@ -102,7 +102,7 @@ class PokemonApi {
   }
 
   Future<List<PokemonMoveModel>?> getPokemonMoves(int id) async {
-    final baseUri = Uri.parse(apiClient.baseUrl ?? '');
+    final baseUri = Uri.parse(apiClient.baseUrl);
 
     final uri = baseUri.replace(path: baseUri.path + 'pokemon/$id');
 
