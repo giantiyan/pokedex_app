@@ -9,20 +9,10 @@ final ThemeData theme = ThemeData(
       fontWeight: FontWeight.bold,
       fontSize: 32,
     ),
-    headline2: TextStyle(
-      color: white,
-      fontWeight: FontWeight.bold,
-      fontSize: 18,
-    ),
-    headline3: TextStyle(
-      color: white,
-      fontWeight: FontWeight.bold,
-      fontSize: 16,
-    ),
     labelMedium: TextStyle(
-      fontSize: 16,
-      fontWeight: FontWeight.w500,
       color: labelGrey,
+      fontWeight: FontWeight.w500,
+      fontSize: 16,
     ),
     bodyText1: TextStyle(
       color: black,

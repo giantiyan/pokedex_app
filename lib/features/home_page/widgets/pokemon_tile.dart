@@ -72,7 +72,7 @@ class _PokemonTileState extends State<PokemonTile> {
                     children: [
                       Text(
                         widget.pokemon?.name?.toString().replaceDash.toTitleCase ?? '',
-                        style: textTheme.headline2,
+                        style: textTheme.headline1?.copyWith(fontSize: 18),
                       ),
                       const SizedBox(height: 8.0),
                       Flexible(

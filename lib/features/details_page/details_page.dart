@@ -45,7 +45,7 @@ class DetailsPage extends StatelessWidget {
                             alignment: Alignment.centerRight,
                             child: Text(
                               specificPokemon?.url?.pokemonId.toString().formatID ?? '',
-                              style: textTheme.headline3
+                              style: textTheme.headline1?.copyWith(fontSize: 16)
                             ),
                           ),
                           Row(
