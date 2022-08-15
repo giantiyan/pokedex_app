@@ -16,6 +16,8 @@ class EvolutionTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+
     return Row(
       children: [
         if (isNotFirstEvolution ?? false)
@@ -34,9 +36,12 @@ class EvolutionTile extends StatelessWidget {
             ),
             Text(
               name?.toString().replaceDash.toTitleCase ?? '',
-              style: TextStyle(fontWeight: FontWeight.w500),
+              style: textTheme.subtitle1?.copyWith(fontWeight: FontWeight.w500),
             ),
-            Text(id?.toString().formatID ?? ''),
+            Text(
+              id?.toString().formatID ?? '',
+              style: textTheme.subtitle1,
+            ),
           ],
         ),
       ],

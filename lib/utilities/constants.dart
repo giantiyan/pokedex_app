@@ -1,7 +1,7 @@
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:pokedex/utilities/colors.dart';
 
-const pokemonListURL = 'https://pokeapi.co/api/v2/pokemon?limit=265&offset=0';
+const pokemonListURL = 'https://pokeapi.co/api/v2/pokemon?limit=1154&offset=0';
 
 const pokemonURL = 'https://pokeapi.co/api/v2/pokemon';
 

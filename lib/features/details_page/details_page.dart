@@ -23,6 +23,8 @@ class DetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+
     return (types != null)
         ? Scaffold(
             backgroundColor: types?.first.name.toString().pokemonColor,
@@ -37,21 +39,13 @@ class DetailsPage extends StatelessWidget {
                         children: [
                           Text(
                             (specificPokemon?.name).toString().replaceDash.toTitleCase,
-                            style: const TextStyle(
-                              fontSize: 32,
-                              fontWeight: FontWeight.bold,
-                              color: white,
-                            ),
+                            style: textTheme.headline1
                           ),
                           Align(
                             alignment: Alignment.centerRight,
                             child: Text(
                               specificPokemon?.url?.pokemonId.toString().formatID ?? '',
-                              style: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                color: white,
-                              ),
+                              style: textTheme.headline1?.copyWith(fontSize: 16)
                             ),
                           ),
                           Row(
