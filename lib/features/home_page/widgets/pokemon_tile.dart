@@ -26,7 +26,7 @@ class _PokemonTileState extends State<PokemonTile> {
   String? url;
 
   void _getTypes() async {
-    await getIt<ApiService>().pokemonApi.getPokemonType(widget.pokemon?.url ?? '').then((value) {
+    await getIt<ApiService>().pokemonApi.getPokemonType(widget.pokemon?.url?.pokemonId ?? 0).then((value) {
       if (!mounted) return;
       setState(() => types = value);
     });

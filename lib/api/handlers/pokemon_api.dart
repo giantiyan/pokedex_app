@@ -26,35 +26,33 @@ class PokemonApi {
   Future<List<PokemonModel>?> filterPokemon(String type) async {
     final baseUri = Uri.parse(apiClient.baseUrl ?? '');
 
-    final uri = baseUri.replace(
-      path: baseUri.path + 'type/$type',
-    );
+    final uri = baseUri.replace(path: baseUri.path + 'type/$type');
 
     return await apiClient.dio!.getUri(uri).then((response) =>
         (response.data['pokemon'] as List).map((pokemon) => PokemonModel.fromJson(pokemon['pokemon'])).toList());
   }
 
-  Future<List<PokemonTypeModel>?> getPokemonType(String url) async {
-    final baseUri = Uri.parse(url);
+  Future<List<PokemonTypeModel>?> getPokemonType(int id) async {
+    final baseUri = Uri.parse(apiClient.baseUrl ?? '');
 
-    final uri = baseUri;
+    final uri = baseUri.replace(path: baseUri.path + 'pokemon/$id');
 
     return await apiClient.dio!.getUri(uri).then(
         (response) => (response.data['types'] as List).map((type) => PokemonTypeModel.fromJson(type['type'])).toList());
   }
 
-  Future<PokemonAboutModel?> getPokemonAbout(String url) async {
-    final baseUri = Uri.parse(url);
+  Future<PokemonAboutModel?> getPokemonAbout(int id) async {
+    final baseUri = Uri.parse(apiClient.baseUrl ?? '');
 
-    final uri = baseUri;
+    final uri = baseUri.replace(path: baseUri.path + 'pokemon/$id');
 
     return await apiClient.dio!.getUri(uri).then((response) => PokemonAboutModel.fromJson(response.data));
   }
 
-  Future<List<PokemonBaseStatModel>?> getPokemonBaseStats(String url) async {
-    final baseUri = Uri.parse(url);
+  Future<List<PokemonBaseStatModel>?> getPokemonBaseStats(int id) async {
+    final baseUri = Uri.parse(apiClient.baseUrl ?? '');
 
-    final uri = baseUri;
+    final uri = baseUri.replace(path: baseUri.path + 'pokemon/$id');
 
     return await apiClient.dio!.getUri(uri).then(
         (response) => (response.data['stats'] as List).map((stats) => PokemonBaseStatModel.fromJson(stats)).toList());
@@ -63,9 +61,7 @@ class PokemonApi {
   Future<PokemonEvolutionsModel?> getPokemonEvolutionChain(int id) async {
     final baseUri = Uri.parse(apiClient.baseUrl ?? '');
 
-    final uri = baseUri.replace(
-      path: baseUri.path + 'pokemon-species/$id',
-    );
+    final uri = baseUri.replace(path: baseUri.path + 'pokemon-species/$id');
 
     return await apiClient.dio!
         .getUri(uri)
@@ -105,10 +101,10 @@ class PokemonApi {
     });
   }
 
-  Future<List<PokemonMoveModel>?> getPokemonMoves(String url) async {
-    final baseUri = Uri.parse(url);
+  Future<List<PokemonMoveModel>?> getPokemonMoves(int id) async {
+    final baseUri = Uri.parse(apiClient.baseUrl ?? '');
 
-    final uri = baseUri;
+    final uri = baseUri.replace(path: baseUri.path + 'pokemon/$id');
 
     return await apiClient.dio!.getUri(uri).then((response) =>
         (response.data['moves'] as List).map((moves) => PokemonMoveModel.fromJson(moves['move'])).toList());

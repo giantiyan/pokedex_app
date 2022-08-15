@@ -8,18 +8,18 @@ import 'package:pokedex/utilities/constants.dart';
 
 class MovesTabConnector extends StatelessWidget {
   const MovesTabConnector({
-    this.pokemonURL,
+    this.pokemonId,
     this.pokemonType,
   });
 
-  final String? pokemonURL;
+  final int? pokemonId;
   final String? pokemonType;
 
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, MovesTabVm>(
       vm: () => MovesTabVmFactory(),
-      onInit: (vm) => vm.dispatch(GetPokemonMovesAction(pokemonURL)),
+      onInit: (vm) => vm.dispatch(GetPokemonMovesAction(pokemonId)),
       builder: (context, vm) => vm.pageState.when(
         (moves) => MovesTab(
           moves: moves,

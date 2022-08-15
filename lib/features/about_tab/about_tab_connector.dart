@@ -7,15 +7,15 @@ import 'package:pokedex/state/app_state.dart';
 import 'package:pokedex/utilities/constants.dart';
 
 class AboutTabConnector extends StatelessWidget {
-  const AboutTabConnector(this.pokemonURL);
+  const AboutTabConnector(this.pokemonId);
 
-  final String? pokemonURL;
+  final int? pokemonId;
 
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, AboutTabVm>(
       vm: () => AboutTabVmFactory(),
-      onInit: (vm) => vm.dispatch(GetPokemonAboutAction(pokemonURL)),
+      onInit: (vm) => vm.dispatch(GetPokemonAboutAction(pokemonId)),
       builder: (context, vm) => vm.pageState.when(
         (about) => AboutTab(about),
         loading: () => spinKitDualRing,
