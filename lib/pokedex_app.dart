@@ -17,9 +17,9 @@ class PokedexApp extends StatelessWidget {
       child: MaterialApp(
         theme: theme,
         home: Navigator(
-          key: mainNavigatorKey, // This is the key in the AppRouter
-          initialRoute: HomePageConnector.route, // Initial route
-          onGenerateRoute: AppRouter.generateRoute, // This is the method under AppRouter that generates routes
+          key: mainNavigatorKey,
+          initialRoute: HomePageConnector.route,
+          onGenerateRoute: AppRouter.generateRoute,
         ),
       ),
     );

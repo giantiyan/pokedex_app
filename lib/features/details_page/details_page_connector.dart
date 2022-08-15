@@ -25,7 +25,10 @@ class DetailsPageConnector extends StatelessWidget {
       vm: () => DetailsPageVmFactory(),
       onInit: (store) async => store.dispatch(GetPokemonTypesAction(args.specificPokemon?.url)),
       builder: (context, vm) => vm.pageState.when(
-        (types) => DetailsPage(specificPokemon: args.specificPokemon, types: types),
+        (types) => DetailsPage(
+          specificPokemon: args.specificPokemon,
+          types: types,
+        ),
         loading: () => Scaffold(body: Center(child: CircularProgressIndicator())),
         error: (error) => Center(child: Text(error!)),
       ),
