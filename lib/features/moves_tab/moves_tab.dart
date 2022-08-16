@@ -22,7 +22,7 @@ class MovesTab extends StatelessWidget {
                 children: moves
                         ?.map((moves) => Type(
                               typeName: moves.name?.replaceDash.toTitleCase,
-                              pokemonType: pokemonType,
+                              color: pokemonType?.pokemonColor,
                             ))
                         .toList() ??
                     [],

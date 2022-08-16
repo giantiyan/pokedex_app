@@ -1,7 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'pokemon_base_stat_model.freezed.dart';
-
 part 'pokemon_base_stat_model.g.dart';
 
 @freezed

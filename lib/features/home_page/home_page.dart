@@ -5,6 +5,7 @@ import 'package:pokedex/features/home_page/widgets/filter_modal.dart';
 import 'package:pokedex/features/home_page/widgets/pokemon_tile.dart';
 import 'package:pokedex/features/home_page/widgets/search_bar.dart';
 import 'package:pokedex/utilities/colors.dart';
+import 'package:pokedex/utilities/string_constants.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({
@@ -31,7 +32,7 @@ class HomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              'Pokédex',
+              pokedex,
               style: textTheme.headline1,
             ),
             SearchBar(onSearch: onSearch),

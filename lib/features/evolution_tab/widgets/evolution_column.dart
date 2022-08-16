@@ -12,13 +12,15 @@ class EvolutionColumn extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       physics: BouncingScrollPhysics(),
-      child: Column(children: [
-        ...?evolutionsList?.map((pokemon) => EvolutionTile(
-              name: pokemon.name,
-              id: pokemon.url?.pokemonId,
-              isNotFirstEvolution: true,
-            ))
-      ]),
+      child: Column(
+        children: [
+          ...?evolutionsList?.map((pokemon) => EvolutionTile(
+                name: pokemon.name,
+                id: pokemon.url?.pokemonId,
+                isNotFirstEvolution: true,
+              ))
+        ],
+      ),
     );
   }
 }

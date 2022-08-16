@@ -5,11 +5,11 @@ import 'package:pokedex/utilities/extensions.dart';
 class Type extends StatelessWidget {
   const Type({
     this.typeName,
-    this.pokemonType,
+    this.color,
   });
 
   final String? typeName;
-  final String? pokemonType;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class Type extends StatelessWidget {
         vertical: 6,
       ),
       decoration: BoxDecoration(
-        color: pokemonType != null ? pokemonType.toString().pokemonColor : white.withOpacity(0.25),
+        color: color,
         borderRadius: BorderRadius.circular(25),
       ),
       margin: EdgeInsets.only(

@@ -3,16 +3,6 @@ import 'package:pokedex/utilities/colors.dart';
 
 const baseUrl = 'https://pokeapi.co/api/v2/';
 
-const pokemonListURL = 'https://pokeapi.co/api/v2/pokemon?limit=1154&offset=0';
-
-const pokemonURL = 'https://pokeapi.co/api/v2/pokemon';
-
-const pokemonSpeciesURL = 'https://pokeapi.co/api/v2/pokemon-species';
-
-const pokemonImage = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/';
-
-const pokemonTypeURL = 'https://pokeapi.co/api/v2/type';
-
 const spinKitHourGlass = SpinKitHourGlass(
   color: red,
   size: 50.0,
@@ -31,3 +21,9 @@ const spinKitDualRing = SpinKitDualRing(
 const searchBarHeight = 46.0;
 
 const searchBarWidth = 220.0;
+
+const detailedPokemonHeight = 210.0;
+
+const evolutionPokemonHeight = 100.0;
+
+const evolutionPokemonWidth = 100.0;

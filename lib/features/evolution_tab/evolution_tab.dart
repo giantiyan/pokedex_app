@@ -11,26 +11,24 @@ class EvolutionTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return (evolutions != null)
-        ? Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  EvolutionTile(
-                    name: evolutions?.firstEvolution?.name,
-                    id: evolutions?.firstEvolution?.url?.pokemonId,
-                    isNotFirstEvolution: false,
-                  ),
-                ],
-              ),
-              if (evolutions?.secondEvolutions.isNotEmpty ?? false)
-                EvolutionColumn(evolutionsList: evolutions?.secondEvolutions),
-              if (evolutions?.thirdEvolutions.isNotEmpty ?? false)
-                EvolutionColumn(evolutionsList: evolutions?.thirdEvolutions),
-            ],
-          )
-        : Center(child: CircularProgressIndicator());
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            EvolutionTile(
+              name: evolutions?.firstEvolution?.name,
+              id: evolutions?.firstEvolution?.url?.pokemonId,
+              isNotFirstEvolution: false,
+            ),
+          ],
+        ),
+        if (evolutions?.secondEvolutions.isNotEmpty == true)
+          EvolutionColumn(evolutionsList: evolutions?.secondEvolutions),
+        if (evolutions?.thirdEvolutions.isNotEmpty == true)
+          EvolutionColumn(evolutionsList: evolutions?.thirdEvolutions),
+      ],
+    );
   }
 }

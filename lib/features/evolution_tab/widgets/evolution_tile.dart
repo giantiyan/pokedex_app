@@ -20,26 +20,26 @@ class EvolutionTile extends StatelessWidget {
 
     return Row(
       children: [
-        if (isNotFirstEvolution ?? false)
-          (Padding(
+        if (isNotFirstEvolution == true)
+          Padding(
             padding: EdgeInsets.all(2),
             child: Icon(Icons.arrow_forward_ios_rounded),
-          )),
+          ),
         Column(
           children: [
             CachedNetworkImage(
-              imageUrl: id?.toString().pokemonImage ?? '',
-              height: 100,
-              width: 100,
+              imageUrl: id?.pokemonImage ?? '',
+              height: evolutionPokemonHeight,
+              width: evolutionPokemonWidth,
               placeholder: (context, url) => spinKitRipple,
               errorWidget: (context, url, error) => const Icon(Icons.error),
             ),
             Text(
-              name?.toString().replaceDash.toTitleCase ?? '',
+              name?.replaceDash.toTitleCase ?? '',
               style: textTheme.subtitle1?.copyWith(fontWeight: FontWeight.w500),
             ),
             Text(
-              id?.toString().formatID ?? '',
+              id?.formatId ?? '',
               style: textTheme.subtitle1,
             ),
           ],

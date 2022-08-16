@@ -11,36 +11,32 @@ class AboutTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return (about != null)
-        ? SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(18.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  AboutInformation(
-                    label: height,
-                    value: about?.height.toString().toHeight,
-                  ),
-                  AboutInformation(
-                    label: weight,
-                    value: about?.weight.toString().toWeight,
-                  ),
-                  AboutInformation(
-                    label: abilities,
-                    value: about?.abilities
-                        ?.map((abilities) => abilities['ability']['name'].toString())
-                        .toList()
-                        .capitalizedAbilities,
-                  ),
-                  AboutInformation(
-                    label: baseExperience,
-                    value: about?.base_experience.toString().toBaseExp,
-                  ),
-                ],
-              ),
-            ),
-          )
-        : Center(child: CircularProgressIndicator());
+    return Padding(
+      padding: const EdgeInsets.all(18.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          AboutInformation(
+            label: height,
+            value: about?.height?.toHeight,
+          ),
+          AboutInformation(
+            label: weight,
+            value: about?.weight?.toWeight,
+          ),
+          AboutInformation(
+            label: abilities,
+            value: about?.abilities
+                ?.map((abilities) => abilities['ability']['name'].toString())
+                .toList()
+                .capitalizedAbilities,
+          ),
+          AboutInformation(
+            label: baseExperience,
+            value: about?.baseExperience?.toBaseExp,
+          ),
+        ],
+      ),
+    );
   }
 }

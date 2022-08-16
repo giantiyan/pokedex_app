@@ -13,7 +13,6 @@ class PokemonApi {
 
   Future<List<PokemonModel>?> getPokemon() async {
     final baseUri = Uri.parse(apiClient.baseUrl);
-
     final uri = baseUri.replace(
       path: baseUri.path + 'pokemon',
       query: 'limit=1154',
@@ -25,7 +24,6 @@ class PokemonApi {
 
   Future<List<PokemonModel>?> filterPokemon(String type) async {
     final baseUri = Uri.parse(apiClient.baseUrl);
-
     final uri = baseUri.replace(path: baseUri.path + 'type/$type');
 
     return await apiClient.dio.getUri(uri).then((response) =>
@@ -34,7 +32,6 @@ class PokemonApi {
 
   Future<List<PokemonTypeModel>?> getPokemonType(int id) async {
     final baseUri = Uri.parse(apiClient.baseUrl);
-
     final uri = baseUri.replace(path: baseUri.path + 'pokemon/$id');
 
     return await apiClient.dio.getUri(uri).then(
@@ -43,7 +40,6 @@ class PokemonApi {
 
   Future<PokemonAboutModel?> getPokemonAbout(int id) async {
     final baseUri = Uri.parse(apiClient.baseUrl);
-
     final uri = baseUri.replace(path: baseUri.path + 'pokemon/$id');
 
     return await apiClient.dio.getUri(uri).then((response) => PokemonAboutModel.fromJson(response.data));
@@ -51,7 +47,6 @@ class PokemonApi {
 
   Future<List<PokemonBaseStatModel>?> getPokemonBaseStats(int id) async {
     final baseUri = Uri.parse(apiClient.baseUrl);
-
     final uri = baseUri.replace(path: baseUri.path + 'pokemon/$id');
 
     return await apiClient.dio.getUri(uri).then(
@@ -60,7 +55,6 @@ class PokemonApi {
 
   Future<PokemonEvolutionsModel?> getPokemonEvolutionChain(int id) async {
     final baseUri = Uri.parse(apiClient.baseUrl);
-
     final uri = baseUri.replace(path: baseUri.path + 'pokemon-species/$id');
 
     return await apiClient.dio
@@ -70,7 +64,6 @@ class PokemonApi {
 
   Future<PokemonEvolutionsModel?> getPokemonEvolutions(String url) async {
     final baseUri = Uri.parse(url);
-
     final uri = baseUri;
 
     return await apiClient.dio.getUri(uri).then((response) {
@@ -103,7 +96,6 @@ class PokemonApi {
 
   Future<List<PokemonMoveModel>?> getPokemonMoves(int id) async {
     final baseUri = Uri.parse(apiClient.baseUrl);
-
     final uri = baseUri.replace(path: baseUri.path + 'pokemon/$id');
 
     return await apiClient.dio.getUri(uri).then((response) =>
